@@ -11,7 +11,14 @@ function sendMessage() {
 }
 
 function showMessages() {
-
+  $.get("getLoggerHTML.php", function(response) {
+    $("body .message-container" )
+      .append("<p>")
+      .append("<b> Time: </b>" + response.time + "<br />")
+      .append("<b> Name: </b>" + response.name + "<br />")
+      .append("<b> Message: </b>" + response.message)
+      .append("</p>");
+  }, "json" );
 }
 
 function getRandomMessage() {
