@@ -1,3 +1,3 @@
 # Architektur-Verteilter-Systeme
 
-Hier könnte eine Beschreibung zum Projekt stehen!
+Hier könnte eine Beschreibung zum Projekt stehen.
