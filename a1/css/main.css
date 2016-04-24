@@ -1,0 +1,14 @@
+.main-container {
+  margin-top: 50px;
+}
+
+.button-container {
+  width: 100%;
+  text-align: center;
+}
+
+.button-container input {
+  color: #5CBB24;
+  font-size: 16px;
+  margin: 0px 25px 0 25px;
+}

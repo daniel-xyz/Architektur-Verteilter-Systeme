@@ -1,3 +1,3 @@
 # Architektur-Verteilter-Systeme
 
-Hier könnte eine Beschreibung zum Projekt stehen!
+Ein Projekt von Tamara Hager und Daniel Bischoff, Studenten der HTW Berlin. Wir wissen selbst noch nicht, wie das Endergebnis aussehen wird. ;)
