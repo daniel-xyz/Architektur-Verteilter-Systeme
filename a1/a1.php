@@ -9,12 +9,10 @@
 </head>
 <body>
   <div class="main-container">
-
     <div class="button-container">
       <input type="button" onclick="sendMessage()" value="Nachricht erzeugen"/>
       <input type="button" onclick="showMessages()" value="Nachrichten anzeigen"/>
     </div>
-
     <div class="message-container"></div>
   </div>
 </body>
