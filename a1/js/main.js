@@ -1,9 +1,9 @@
 function sendMessage() {
   var time = new Date(new Date().getTime()).toLocaleString();
   var from = "Manfred";
-  var message = getRandomMessage();
+  var message = "Hier könnte eine interessantere Nachricht stehen.";
 
-  $.get("logger.php", {
+  $.get("loggerHandler.php", {
     time: time,
     from: from,
     message: message
@@ -19,8 +19,4 @@ function showMessages() {
       .append("<b> Message: </b>" + response.message)
       .append("</p>");
   }, "json" );
-}
-
-function getRandomMessage() {
-  return "Ich könnte eine interessantere Nachricht sein."
 }
