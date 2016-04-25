@@ -11,12 +11,16 @@ function sendMessage() {
 }
 
 function showMessages() {
-  $.get("getLoggerHTML.php", function(response) {
-    $("body .message-container" )
-      .append("<p>")
-      .append("<b> Time: </b>" + response.time + "<br />")
-      .append("<b> Name: </b>" + response.name + "<br />")
-      .append("<b> Message: </b>" + response.message)
-      .append("</p>");
-  }, "json" );
+  $.get("getLoggerHTML.php", function (response) {
+    var entry =
+      '<div class="entry" style="display:none;">' +
+      '<p>' +
+      '<b> Time: </b>' + response.time + '<br />' +
+      '<b> Name: </b>' + response.from + '<br />' +
+      '<b> Message: </b>' + response.message +
+      '</p>' +
+      '</div>';
+
+    $(entry).appendTo('body .message-container').fadeIn('slow');
+  }, "json");
 }

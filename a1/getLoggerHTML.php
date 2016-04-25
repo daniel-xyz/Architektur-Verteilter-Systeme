@@ -1,7 +1,7 @@
 <?php
 
-echo json_encode(array(
-  "time" => "24.4.2016, 21:24:33",
-  "name" => "Manfred",
-  "message" => "Hier könnte eine interessantere Nachricht stehen."
-));
+require_once('includes.php');
+
+$logger = new Logger();
+$entries = $logger->getDateSortedLog();
+echo json_encode($entries[0]);
