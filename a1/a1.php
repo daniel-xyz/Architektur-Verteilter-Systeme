@@ -12,6 +12,7 @@
     <div class="button-container">
       <input type="button" onclick="sendMessage()" value="Nachricht erzeugen"/>
       <input type="button" onclick="showMessages()" value="Nachrichten anzeigen"/>
+      <input type="button" onclick="stopShowingMessages()" value="Nachrichten stoppen"/>
     </div>
     <div class="message-container"></div>
   </div>

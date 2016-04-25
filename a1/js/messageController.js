@@ -1,3 +1,5 @@
+var loadMessages;
+
 function sendMessage() {
   var time = new Date(new Date().getTime()).toLocaleString();
   var from = "Manfred";
@@ -11,16 +13,22 @@ function sendMessage() {
 }
 
 function showMessages() {
-  $.get("getLoggerHTML.php", function (response) {
-    var entry =
-      '<div class="entry" style="display:none;">' +
-      '<p>' +
-      '<b> Time: </b>' + response.time + '<br />' +
-      '<b> Name: </b>' + response.from + '<br />' +
-      '<b> Message: </b>' + response.message +
-      '</p>' +
-      '</div>';
+  loadMessages = setInterval(function () {
+    $.get("getLoggerHTML.php", function (response) {
+      var entry =
+        '<div class="entry" style="display:none;">' +
+        '<p>' +
+        '<b> Time: </b>' + response.time + '<br />' +
+        '<b> Name: </b>' + response.from + '<br />' +
+        '<b> Message: </b>' + response.message +
+        '</p>' +
+        '</div>';
 
-    $(entry).appendTo('body .message-container').fadeIn('slow');
-  }, "json");
+      $(entry).appendTo('body .message-container').fadeIn('slow');
+    }, "json");
+  }, 2000);
+}
+
+function stopShowingMessages() {
+  clearInterval(loadMessages);
 }
