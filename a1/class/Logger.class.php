@@ -28,12 +28,8 @@ class Logger {
   }
 
   private function serialize($entries) {
-    $fileName = $this->fileName;
-
-    if(file_exists($fileName) && flock($fileName, LOCK_EX) && (count($entries) > 0)) {
-      file_put_contents($fileName, serialize($entries));
-      fflush($fileName);
-      flock($fileName, LOCK_UN);
+    if(file_exists($this->fileName) && (count($entries) > 0)) {
+      file_put_contents($this->fileName, serialize($entries));
     }
   }
 
