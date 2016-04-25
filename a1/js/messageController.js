@@ -3,7 +3,7 @@ function sendMessage() {
   var from = "Manfred";
   var message = "Hier könnte eine interessantere Nachricht stehen.";
 
-  $.get("loggerHandler.php", {
+  $.get("logger.php", {
     time: time,
     from: from,
     message: message

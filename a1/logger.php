@@ -1,23 +1,9 @@
 <?php
 
-class Logger {
+require_once('classLoader.php');
 
-  static $fileName = 'messages.txt';
-  static $messages = array();
-
-  public static function log($message) {
-    if(file_exists(self::$fileName)) {
-      $data = file_get_contents(self::$fileName);
-
-      if(strlen($data) > 0) {
-        self::$messages = unserialize($data);
-      }
-    }
-
-    self::$messages[] = $message;
-
-    file_put_contents(self::$fileName, serialize(self::$messages));
-
-    print_r(self::$messages); // Nur zum Debuggen, um das Array im Browser in der Response zu sehen.
-  }
+if(!empty($_REQUEST['time']) && !empty($_REQUEST['from']) && !empty($_REQUEST['message'])) {
+  $message = array($_REQUEST['time'], $_REQUEST['from'], $_REQUEST['message']);
+  $logger = new Logger();
+  $logger->log($message);
 }
