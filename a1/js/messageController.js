@@ -1,4 +1,5 @@
-var loadMessages;
+var loadMessages,
+    messageCounter = 0;
 
 function sendMessage() {
   var time = new Date(new Date().getTime()).toLocaleString();
@@ -15,6 +16,12 @@ function sendMessage() {
 function showMessages() {
   loadMessages = setInterval(function () {
     $.get("getLoggerHTML.php", function (response) {
+
+      if(messageCounter > 5) {
+        $('.entry').empty();
+        messageCounter = 0
+      }
+
       var entry =
         '<div class="entry" style="display:none;">' +
         '<p>' +
@@ -25,6 +32,7 @@ function showMessages() {
         '</div>';
 
       $(entry).appendTo('body .message-container').fadeIn('slow');
+      messageCounter ++;
     }, "json");
   }, 2000);
 }
