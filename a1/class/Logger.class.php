@@ -15,18 +15,6 @@ class Logger {
     return $this->deserialize();
   }
 
-  public function getDateSortedLog() {
-    $entries = $this->getLog();
-
-    usort($entries, function ($a, $b) {
-      $t1 = strtotime($a['time']);
-      $t2 = strtotime($b['time']);
-      return $t2 - $t1;
-    });
-
-    return $entries;
-  }
-
   private function serialize($entries) {
     if(file_exists($this->fileName) && (count($entries) > 0)) {
       file_put_contents($this->fileName, serialize($entries));

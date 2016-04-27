@@ -2,7 +2,7 @@ var loadMessages,
     messageCounter = 0;
 
 function sendMessage() {
-  var time = new Date(new Date().getTime()).toLocaleString();
+  var time = Math.floor(Date.now() / 1000);
   var from = "Manfred";
   var message = "Hier könnte eine interessantere Nachricht stehen.";
 
@@ -13,7 +13,7 @@ function sendMessage() {
   });
 }
 
-function showMessages() {
+function startShowingMessages() {
   loadMessages = setInterval(function () {
     $.get("getLoggerHTML.php", function (response) {
 
@@ -25,9 +25,9 @@ function showMessages() {
       var entry =
         '<div class="entry" style="display:none;">' +
         '<p>' +
-        '<b> Time: </b>' + response.time + '<br />' +
+        '<b> Wann: </b>' + response.time + '<br />' +
         '<b> Name: </b>' + response.from + '<br />' +
-        '<b> Message: </b>' + response.message +
+        '<b> Von: </b>' + response.message +
         '</p>' +
         '</div>';
 
