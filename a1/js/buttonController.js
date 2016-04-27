@@ -6,16 +6,22 @@ function sendMessage() {
   var from = "Manfred";
   var message = "Hier könnte eine interessantere Nachricht stehen.";
 
+  resetStatusMessages();
+
   $.get("logger.php", {
     time: time,
     from: from,
     message: message
-  });
+  })
+    .success(function() {
+      msg('Nachricht wurde angelegt.')
+    });
 }
 
 function startShowingMessages() {
   loadMessages = setInterval(function () {
     $.get("getLoggerHTML.php", function (response) {
+        resetStatusMessages();
 
       if(messageCounter > 5) {
         $('.entry').empty();
@@ -33,10 +39,27 @@ function startShowingMessages() {
 
       $(entry).appendTo('body .message-container').fadeIn('slow');
       messageCounter ++;
-    }, "json");
+    }, "json")
+      .fail(function() {
+        stopShowingMessages();
+        error('Es konnten keine Nachrichten gefunden werden.');
+      });
   }, 2000);
 }
 
 function stopShowingMessages() {
   clearInterval(loadMessages);
+}
+
+function restart() {
+  stopShowingMessages();
+
+  $.get("restart.php", function () {
+    clearMessages();
+  });
+}
+
+function clearMessages() {
+  $('.entry').empty();
+  msg('Alle Nachrichten wurden erfolgreich gelöscht.')
 }
