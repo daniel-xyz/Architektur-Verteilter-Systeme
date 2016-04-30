@@ -6,13 +6,23 @@ class Logger {
 
   public function log($message) {
     $entries = $this->deserialize();
-    array_push($entries, $message);
+    $entries[$message['time']] = $message;
     $this->serialize($entries);
     print_r($entries); // Nur zum Debuggen, um das Array im Browser in der Response zu sehen.
   }
 
   public function getLog() {
-    return $this->deserialize();
+    $oldestEntry = array();
+    $entries = $this->deserialize();
+
+    if (count($entries) > 0) {
+      krsort($entries);
+      $oldestEntry = array_pop($entries);
+      $oldestEntry['more'] = count($entries);
+      $this->serialize($entries);
+    }
+
+    return $oldestEntry;
   }
 
   public function resetLog() {

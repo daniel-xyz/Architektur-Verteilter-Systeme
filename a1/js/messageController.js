@@ -26,6 +26,10 @@ function startShowingMessages() {
     $.get("getLoggerHTML.php", function (response) {
         resetStatusMessages();
 
+      if(response.more === 0) {
+        stopShowingMessages();
+      }
+
       if(messageCounter > 5) {
         $('.entry').empty();
         messageCounter = 0
@@ -34,9 +38,9 @@ function startShowingMessages() {
       var entry =
         '<div class="entry" style="display:none;">' +
         '<p>' +
-        '<b> Wann: </b>' + response.time + '<br />' +
-        '<b> Name: </b>' + response.from + '<br />' +
-        '<b> Von: </b>' + response.message +
+        '<b> Wann: </b>' + response.message.time + '<br />' +
+        '<b> Name: </b>' + response.message.from + '<br />' +
+        '<b> Von: </b>' + response.message.message +
         '</p>' +
         '</div>';
 
