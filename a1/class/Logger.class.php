@@ -15,21 +15,55 @@ class Logger {
     return $this->deserialize();
   }
 
-  private function serialize($entries) {
-    if(file_exists($this->fileName) && (count($entries) > 0)) {
-      file_put_contents($this->fileName, serialize($entries));
+  public function resetLog() {
+    $file = fopen($this->fileName, "r+");
+
+    if (flock($file, LOCK_EX)) { // exklusive Sperre
+      ftruncate($file, 0); // kürze Datei
+      fflush($file); // leere Ausgabepuffer bevor die Sperre frei gegeben wird
+      flock($file, LOCK_UN); // Gib Sperre frei
+    } else {
+      print_r("Konnte Sperre nicht erhalten!");
     }
+
+    fclose($file);
+  }
+
+  private function serialize($entries) {
+    $file = fopen($this->fileName, "r+");
+
+    if (flock($file, LOCK_EX)) { // exklusive Sperre
+      ftruncate($file, 0); // kürze Datei
+      fwrite($file, serialize($entries));
+      fflush($file); // leere Ausgabepuffer bevor die Sperre frei gegeben wird
+      flock($file, LOCK_UN); // Gib Sperre frei
+    } else {
+      print_r("Konnte Sperre nicht erhalten!");
+    }
+
+    fclose($file);
   }
 
   private function deserialize() {
     $entries = array();
-    if(file_exists($this->fileName)) {
-      $data = file_get_contents($this->fileName);
+    $file = fopen($this->fileName, "r");
 
-      if(strlen($data) > 0) {
-        $entries = unserialize($data);
+    if (flock($file, LOCK_SH)) { // geteilte Sperre
+      $fileSize = filesize($this->fileName);
+
+      if ($fileSize > 0) {
+        $entries = unserialize(fread($file, $fileSize));
+      } else {
+        print_r("Kein Dateiinhalt zum Deserialisieren vorhanden.");
       }
+      fflush($file); // leere Ausgabepuffer bevor die Sperre frei gegeben wird
+      flock($file, LOCK_UN); // Gib Sperre frei
+    } else {
+      print_r("Konnte Sperre nicht erhalten!");
     }
+
+    fclose($file);
+
     return $entries;
   }
 }

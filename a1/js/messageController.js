@@ -14,7 +14,10 @@ function sendMessage() {
     message: message
   })
     .success(function() {
-      msg('Nachricht wurde angelegt.')
+      msg('Nachricht wurde angelegt.');
+    })
+    .fail(function() {
+      error('Nachricht konnte nicht gespeichert werden.'); // TODO: 404er vom Backend zurückgeben (vom Logger den Error durchreichen)
     });
 }
 
@@ -61,5 +64,5 @@ function restart() {
 
 function clearMessages() {
   $('.entry').empty();
-  msg('Alle Nachrichten wurden erfolgreich gelöscht.')
+  msg('Alle Nachrichten wurden erfolgreich gelöscht.');
 }
