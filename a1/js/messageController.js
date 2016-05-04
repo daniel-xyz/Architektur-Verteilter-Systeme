@@ -38,9 +38,9 @@ function startShowingMessages() {
       var entry =
         '<div class="entry" style="display:none;">' +
         '<p>' +
-        '<b> Wann: </b>' + response.message.time + '<br />' +
-        '<b> Name: </b>' + response.message.from + '<br />' +
-        '<b> Von: </b>' + response.message.message +
+        response.message.time +
+        ', ' + response.message.from +
+        ': ' + response.message.message +
         '</p>' +
         '</div>';
 
@@ -51,7 +51,7 @@ function startShowingMessages() {
         stopShowingMessages();
         error('Es konnten keine Nachrichten gefunden werden.');
       });
-  }, 2000);
+  }, 1000);
 }
 
 function stopShowingMessages() {
@@ -70,3 +70,5 @@ function clearMessages() {
   $('.entry').empty();
   msg('Alle Nachrichten wurden erfolgreich gelöscht.');
 }
+
+window.onload = startShowingMessages;
