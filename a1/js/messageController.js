@@ -12,11 +12,9 @@ function sendMessage() {
     time: time,
     from: from,
     message: message
-  })
-    .success(function() {
+  }).success(function() {
       msg('Nachricht wurde angelegt.');
-    })
-    .fail(function() {
+    }).fail(function() {
       error('Nachricht konnte nicht gespeichert werden.'); // TODO: 404er vom Backend zurückgeben (vom Logger den Error durchreichen)
     });
 }
