@@ -4,4 +4,5 @@ cd /opt/lampp/htdocs/Architektur-Verteilter-Systeme/a2 &&
 sudo chmod 777 messages.txt &&
 sh /opt/lampp/lampp startapache &&
 #curl http://localhost/Architektur-Verteilter-Systeme/a2/notifyRegistry.php &&
-read -p "Server started: http://localhost/Architektur-Verteilter-Systeme/a2/a2.php"
+read -p "Server started: http://localhost/Architektur-Verteilter-Systeme/a2/a2.php" &&
+ifconfig | grep inet | awk '{ print $2 }'
