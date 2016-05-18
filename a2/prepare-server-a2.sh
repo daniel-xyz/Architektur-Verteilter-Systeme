@@ -3,3 +3,4 @@ sudo sh -c 'cd /opt/lampp/htdocs/Architektur-Verteilter-Systeme && git fetch ori
 cd /opt/lampp/htdocs/Architektur-Verteilter-Systeme/a2 &&
 sudo chmod 777 messages.txt &&
 sh /opt/lampp/lampp startapache
+curl http://localhost/Architektur-Verteilter-Systeme/a1/notifyRegistry.php
