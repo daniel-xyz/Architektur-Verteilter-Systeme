@@ -1,6 +1,6 @@
 <?php
 
-require_once('includes.php');
+require_once('class/Logger.class.php');
 
 if(!empty($_REQUEST['time']) && !empty($_REQUEST['from']) && !empty($_REQUEST['message'])) {
   $message = array

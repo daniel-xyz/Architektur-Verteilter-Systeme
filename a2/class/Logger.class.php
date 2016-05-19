@@ -2,7 +2,7 @@
 
 class Logger {
 
-  private  $fileName = 'messages.txt';
+  private  $fileName = 'persistence/messages.txt';
 
   public function log($message) {
     $entries = $this->deserialize();
