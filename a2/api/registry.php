@@ -4,10 +4,10 @@ require_once('../class/FileHandler.class.php');
 
 // TODO Responds with deserliazed iplist.txt
 
-if(!empty($_REQUEST['name'])) {
+if (!empty($_REQUEST['name'])) {
   $name = $_REQUEST['name'];
 
-  if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+  if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
     $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
     addToIpList($name, $ip);
 } elseif(!empty($_SERVER['REMOTE_ADDR'])) {
