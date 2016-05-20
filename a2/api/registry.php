@@ -29,5 +29,10 @@ function addToIpList($name, $ip) {
   );
   $fileHandler->serialize($fileName, $ipList);
 
-  echo json_encode($ipList);
+  if (count($ipList) > 1) {
+    echo json_encode($ipList);
+  } else {
+    var_dump(http_response_code(505));
+    echo json_encode('Es ist irgendetwas schief gelaufen, denn die IP-Liste ist zu kurz.');
+  }
 }

@@ -21,6 +21,7 @@ class FileHandler {
 
   public function deserialize($fileName) {
     $array = array();
+
     $file = fopen($this->defaultFilePath . $fileName, "r");
 
     if (flock($file, LOCK_SH)) { // geteilte Sperre
