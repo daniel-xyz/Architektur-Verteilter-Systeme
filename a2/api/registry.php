@@ -21,7 +21,7 @@ function addToIpList($name, $ip) {
   $fileHandler = new FileHandler();
 
   $ipList = $fileHandler->deserialize($fileName);
-  $ipList[] = array (
+  $ipList[$ip] = array (
     'Name' => $name,
     'IP' => $ip
   );

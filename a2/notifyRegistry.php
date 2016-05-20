@@ -25,7 +25,7 @@ try {
     $ipList = $response->getBody();
     $fileHandler = new FileHandler();
     $fileHandler->serialize('persistence/iplist.txt', $ipList);
-    $fileHandler->serialize('persistence/config.txt', end($ipList));
+//    $fileHandler->serialize('persistence/config.txt', end($ipList)); TODO Server should know his own ip somehow
     echo('Registry-Server hat Request erhalten und antwortete mit IP-Liste. ');
   } else {
     echo 'Unerwarteter HTTP-Status vom Registry-Server: ' . $response->getStatus() . '. ' . $response->getReasonPhrase() . ' ';
