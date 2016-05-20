@@ -23,7 +23,7 @@ try {
   if (200 == $response->getStatus()) {
     $ipList = $response->getBody();
     var_dump(http_response_code(200));
-    echo('Registry-Server hat Request erhalten. und antwortete mit IP-Liste: ' . $ipList);
+    echo('Registry-Server hat Request erhalten und antwortete mit IP-Liste: ' . $ipList);
   } else {
     echo 'Unerwarteter HTTP-Status: ' . $response->getStatus() . ' ' . $response->getReasonPhrase();
     var_dump(http_response_code(404));

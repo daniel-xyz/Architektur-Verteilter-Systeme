@@ -4,10 +4,8 @@ require_once('../class/FileHandler.class.php');
 
 // TODO Responds with deserliazed ipList.txt
 
-$fileName = 'ipList.txt';
-
 if(!empty($_REQUEST['name'])) {
-  $name = $this->$name = $_REQUEST['name'];
+  $name = $_REQUEST['name'];
 
   if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
     $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
@@ -21,14 +19,15 @@ if(!empty($_REQUEST['name'])) {
 }
 
 function addToIpList($name, $ip) {
+  $fileName = 'ipList.txt';
   $fileHandler = new FileHandler();
 
-  $IP_List = $fileHandler->deserialize($this->fileName);
-  $IP_List[] = array (
+  $ipList = $fileHandler->deserialize($fileName);
+  $ipList[] = array (
     'Name' => $name,
     'IP' => $ip
   );
-  $fileHandler->serialize($this->fileName, $IP_List);
+  $fileHandler->serialize($fileName, $ipList);
 
-  echo json_encode($IP_List);
+  echo json_encode($ipList);
 }
