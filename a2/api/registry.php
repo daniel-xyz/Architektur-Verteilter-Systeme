@@ -2,8 +2,6 @@
 
 require_once('../class/FileHandler.class.php');
 
-// TODO Responds with deserliazed iplist.txt
-
 if (!empty($_REQUEST['name'])) {
   $name = $_REQUEST['name'];
 
@@ -23,18 +21,13 @@ function addToIpList($name, $ip) {
   $fileHandler = new FileHandler();
 
   $ipList = $fileHandler->deserialize($fileName);
-  $ipList['all'] = array (
+  $ipList[] = array (
     'Name' => $name,
     'IP' => $ip
   );
   $fileHandler->serialize($fileName, $ipList);
 
-  $ipList['you'] = array (
-    'Name' => $name,
-    'IP' => $ip
-  );
-
-  if (count($ipList['all']) > 1) {
+  if (count($ipList) > 1) {
     echo json_encode($ipList);
   } else {
     var_dump(http_response_code(505));
