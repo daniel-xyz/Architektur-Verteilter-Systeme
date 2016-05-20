@@ -1,6 +1,7 @@
 <?php
 
 require_once 'HTTP/Request2.php';
+require_once 'class/FileHandler.class.php';
 
 // TODO PEAR request to that registry server, serialize the registry server IP and the response in iplist.txt
 
