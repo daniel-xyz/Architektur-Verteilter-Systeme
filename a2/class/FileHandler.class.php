@@ -2,7 +2,7 @@
 
 class FileHandler {
 
-  private $defaultFilePath = '../persistence/';
+  private $defaultFilePath = 'persistence/';
 
   public function serialize($fileName, $content) {
     $file = fopen($this->defaultFilePath . $fileName, "r+");
