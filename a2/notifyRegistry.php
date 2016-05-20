@@ -2,7 +2,7 @@
 
 require_once 'HTTP/Request2.php';
 
-// TODO PEAR request to that registry server, serialize the registry server IP and the response in ipList.txt
+// TODO PEAR request to that registry server, serialize the registry server IP and the response in iplist.txt
 
 $registryServer = '';
 $serverName = '';

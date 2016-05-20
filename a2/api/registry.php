@@ -2,7 +2,7 @@
 
 require_once('../class/FileHandler.class.php');
 
-// TODO Responds with deserliazed ipList.txt
+// TODO Responds with deserliazed iplist.txt
 
 if(!empty($_REQUEST['name'])) {
   $name = $_REQUEST['name'];
@@ -19,7 +19,7 @@ if(!empty($_REQUEST['name'])) {
 }
 
 function addToIpList($name, $ip) {
-  $fileName = 'ipList.txt';
+  $fileName = 'iplist.txt';
   $fileHandler = new FileHandler();
 
   $ipList = $fileHandler->deserialize($fileName);

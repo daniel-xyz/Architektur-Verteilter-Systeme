@@ -6,7 +6,7 @@
   <script type="text/javascript" src="js/statusMessageHandler.js"></script>
   <script type="text/javascript" src="js/messageController.js"></script>
   <link rel="stylesheet" href="css/main.css">
-  <title>Aufgabe 1</title>
+  <title>Aufgabe 2</title>
 </head>
 <body>
   <div class="main-container">
