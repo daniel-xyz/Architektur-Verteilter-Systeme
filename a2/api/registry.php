@@ -21,16 +21,20 @@ function addToIpList($name, $ip) {
   $fileHandler = new FileHandler();
 
   $ipList = $fileHandler->deserialize($fileName);
-  $ipList[$ip] = array (
-    'Name' => $name,
-    'IP' => $ip
-  );
-  $fileHandler->serialize($fileName, $ipList);
+
+  if (!array_key_exists($ip, $ipList)) {
+    $ipList[$ip] = array (
+      'Name' => $name,
+      'IP' => $ip
+    );
+    $fileHandler->serialize($fileName, $ipList);
+  } else {
+    var_dump(http_response_code(406));
+  }
 
   if (count($ipList) > 0) {
     echo json_encode($ipList);
   } else {
     var_dump(http_response_code(505));
-    echo json_encode('Es ist irgendetwas schief gelaufen, denn die IP-Liste ist zu kurz.');
   }
 }
