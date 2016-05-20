@@ -22,9 +22,11 @@ try {
 
   if (200 == $response->getStatus()) {
     $ipList = $response->getBody();
-    echo('Registry-Server hat Request erhalten und antwortete mit IP-Liste: ' . $ipList);
+    $fileHandler = new FileHandler();
+    $fileHandler->serialize('persistence/iplist.txt', $ipList);
+    echo('Registry-Server hat Request erhalten und antwortete mit IP-Liste.');
   } else {
-    echo 'Unerwarteter HTTP-Status vom Registry-Server: ' . $response->getStatus() . ': ' . $response->getReasonPhrase();
+    echo 'Unerwarteter HTTP-Status vom Registry-Server: ' . $response->getStatus() . '. ' . $response->getReasonPhrase() . ' ';
   }
 } catch (HTTP_Request2_Exception $e) {
   echo 'Fehler: ' . $e->getMessage();

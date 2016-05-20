@@ -29,6 +29,11 @@ function addToIpList($name, $ip) {
   );
   $fileHandler->serialize($fileName, $ipList);
 
+  $ipList['you'] = array (
+    'Name' => $name,
+    'IP' => $ip
+  );
+
   if (count($ipList) > 1) {
     echo json_encode($ipList);
   } else {
