@@ -27,7 +27,7 @@ function addToIpList($name, $ip) {
   );
   $fileHandler->serialize($fileName, $ipList);
 
-  if (count($ipList) > 1) {
+  if (count($ipList) > 0) {
     echo json_encode($ipList);
   } else {
     var_dump(http_response_code(505));
