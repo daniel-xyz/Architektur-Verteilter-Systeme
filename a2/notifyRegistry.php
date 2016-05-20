@@ -24,10 +24,10 @@ try {
     $ipList = $response->getBody();
     echo('Registry-Server hat Request erhalten und antwortete mit IP-Liste: ' . $ipList);
   } else {
-    echo 'Unerwarteter HTTP-Status: ' . $response->getStatus() . ': ' . $response->getReasonPhrase();
+    echo 'Unerwarteter HTTP-Status vom Registry-Server: ' . $response->getStatus() . ': ' . $response->getReasonPhrase();
   }
 } catch (HTTP_Request2_Exception $e) {
   echo 'Fehler: ' . $e->getMessage();
 } finally {
-  var_dump(http_response_code($response->getStatus()));
+  var_dump($response->getStatus());
 }
