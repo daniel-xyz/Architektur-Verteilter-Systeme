@@ -34,7 +34,7 @@ function addToIpList($name, $ip) {
     'IP' => $ip
   );
 
-  if (count($ipList) > 1) {
+  if (count($ipList['all']) > 1) {
     echo json_encode($ipList);
   } else {
     var_dump(http_response_code(505));
