@@ -1,9 +1,9 @@
 <?php
 
 class FileHandler {
-  
+
   public function serialize($fileName, $content) {
-    $file = fopen($$fileName, "r+");
+    $file = fopen($fileName, "r+");
 
     if (flock($file, LOCK_EX)) { // exklusive Sperre
       ftruncate($file, 0); // kürze Datei
