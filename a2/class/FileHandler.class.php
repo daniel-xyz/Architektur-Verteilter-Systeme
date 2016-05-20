@@ -2,7 +2,7 @@
 
 class FileHandler {
 
-  private $defaultFilePath = 'persistence/';
+  private $defaultFilePath = '../persistence/';
 
   public function serialize($fileName, $content) {
     $file = fopen($this->defaultFilePath . $fileName, "r+");
@@ -20,14 +20,14 @@ class FileHandler {
   }
 
   public function deserialize($fileName) {
-    $entries = array();
+    $array = array();
     $file = fopen($this->defaultFilePath . $fileName, "r");
 
     if (flock($file, LOCK_SH)) { // geteilte Sperre
       $fileSize = filesize($this->defaultFilePath . $fileName);
 
       if ($fileSize > 0) {
-        $entries = unserialize(fread($file, $fileSize));
+        $array = unserialize(fread($file, $fileSize));
       } else {
         print_r("Kein Dateiinhalt zum Deserialisieren vorhanden.");
       }
@@ -39,7 +39,7 @@ class FileHandler {
 
     fclose($file);
 
-    return $entries;
+    return $array;
   }
 
   public function emptyFile($fileName) {

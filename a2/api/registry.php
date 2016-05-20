@@ -1,14 +1,34 @@
 <?php
 
-// TODO Takes requests, and if IP is not saved it saves the it with a random name in ipList.txt
+require_once('../class/FileHandler.class.php');
+
 // TODO Responds with deserliazed ipList.txt
 
-$newIP = '';
+$fileName = 'ipList.txt';
 
-if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-  $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+if(!empty($_REQUEST['name'])) {
+  $name = $this->$name = $_REQUEST['name'];
+
+  if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    addToIpList($name, $ip);
 } elseif(!empty($_SERVER['REMOTE_ADDR'])) {
-  $ip = $_SERVER['REMOTE_ADDR'];
-} else {
-  user_error("IP konnte nicht ermittelt werden.");
+    $ip = $_SERVER['REMOTE_ADDR'];
+    addToIpList($name, $ip);
+  } else {
+    user_error("IP konnte nicht ermittelt werden.");
+  }
+}
+
+function addToIpList($name, $ip) {
+  $fileHandler = new FileHandler();
+
+  $IP_List = $fileHandler->deserialize($this->fileName);
+  $IP_List[] = array (
+    'Name' => $name,
+    'IP' => $ip
+  );
+  $fileHandler->serialize($this->fileName, $IP_List);
+
+  echo json_encode($IP_List);
 }

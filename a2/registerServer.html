@@ -9,12 +9,18 @@
 </head>
 <body>
 <div class="main-container">
+  <span class="status"></span>
   <div class="input-container">
-    <label for="ip">IP des Registry-Servers:</label>
-    <input id="ip" type="text" placeholder="IP eingeben">
+    <p>
+      <label for="ip">Gewünschter Servername:</label>
+      <input id="server-name" type="text" placeholder="Namen eingeben">
+    </p>
+    <p>
+      <label for="ip">IP des Registry-Servers:</label>
+      <input id="ip" type="text" placeholder="IP eingeben">
+    </p>
     <input type="button" value="Anmelden" onclick="notifyRegistry()">
   </div>
-  <div class="message-container"></div>
 </div>
 </body>
 </html>
