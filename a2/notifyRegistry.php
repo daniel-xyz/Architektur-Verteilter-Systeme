@@ -24,8 +24,7 @@ try {
     $ipList = $response->getBody();
     echo('Registry-Server hat Request erhalten und antwortete mit IP-Liste: ' . $ipList);
   } else {
-    echo 'Unerwarteter HTTP-Status: ' . $response->getStatus() . ' ' . $response->getReasonPhrase();
-    echo('Registry-Server ist nicht erreichbar oder hat einen internen Error.');
+    echo 'Unerwarteter HTTP-Status: ' . $response->getStatus() . ': ' . $response->getReasonPhrase();
   }
 } catch (HTTP_Request2_Exception $e) {
   echo 'Fehler: ' . $e->getMessage();

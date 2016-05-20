@@ -1,11 +1,9 @@
 <?php
 
 class FileHandler {
-
-  private $defaultFilePath = 'persistence/';
-
+  
   public function serialize($fileName, $content) {
-    $file = fopen($this->defaultFilePath . $fileName, "r+");
+    $file = fopen($$fileName, "r+");
 
     if (flock($file, LOCK_EX)) { // exklusive Sperre
       ftruncate($file, 0); // kürze Datei
@@ -22,10 +20,10 @@ class FileHandler {
   public function deserialize($fileName) {
     $array = array();
 
-    $file = fopen($this->defaultFilePath . $fileName, "r");
+    $file = fopen($fileName, "r");
 
     if (flock($file, LOCK_SH)) { // geteilte Sperre
-      $fileSize = filesize($this->defaultFilePath . $fileName);
+      $fileSize = filesize($fileName);
 
       if ($fileSize > 0) {
         $array = unserialize(fread($file, $fileSize));
@@ -44,7 +42,7 @@ class FileHandler {
   }
 
   public function emptyFile($fileName) {
-    $file = fopen($this->defaultFilePath . $fileName, "r+");
+    $file = fopen($fileName, "r+");
 
     if (flock($file, LOCK_EX)) { // exklusive Sperre
       ftruncate($file, 0); // kürze Datei
