@@ -3,5 +3,6 @@ sudo sh -c 'cd /opt/lampp/htdocs/Architektur-Verteilter-Systeme && git fetch ori
 cd /opt/lampp/htdocs/Architektur-Verteilter-Systeme/a2/persistence &&
 sudo chmod 777 messages.txt &&
 sudo chmod 777 iplist.txt &&
+sudo chmod 777 config.txt &&
 sh /opt/lampp/lampp startapache &&
 read -p "Server started: http://localhost/Architektur-Verteilter-Systeme/a2/a2.php"
