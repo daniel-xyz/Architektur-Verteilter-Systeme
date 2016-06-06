@@ -14,6 +14,9 @@ if (!empty($_REQUEST['name'])) {
   } else {
     user_error("IP konnte nicht ermittelt werden.");
   }
+} else {
+  echo('Der Name darf im Request nicht fehlen. ');
+  var_dump(http_response_code(409));
 }
 
 function addToIpList($name, $ip) {

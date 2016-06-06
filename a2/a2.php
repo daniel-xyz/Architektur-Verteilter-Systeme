@@ -10,8 +10,9 @@
 </head>
 <body>
   <div class="main-container">
-    <div class="status-container">
+    <div class="top-container">
       <span class="status"></span>
+      <span class="links"><a href="registerServer.html">Diesen Server registrieren</a></span>
     </div>
     <div class="button-container">
       <input type="button" onclick="sendMessage()" value="Nachricht erzeugen"/>

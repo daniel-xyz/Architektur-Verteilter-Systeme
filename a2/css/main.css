@@ -5,14 +5,29 @@ body {
   font: 15px/22.5px "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: dodgerblue;
+}
+
 .main-container {
   margin: 20px 16px 0 32px;
   text-align: left;
 }
 
-.status-container {
+.top-container {
   margin-bottom: 20px;
   height: 20px;
+}
+
+.top-container .status {
+  width: 70%;
+  float: left;
+}
+
+.top-container .links {
+  width: 30%;
+  float: right;
 }
 
 .button-container {
