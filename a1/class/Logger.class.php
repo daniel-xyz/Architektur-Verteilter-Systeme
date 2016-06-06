@@ -32,8 +32,6 @@ class Logger {
       ftruncate($file, 0); // kürze Datei
       fflush($file); // leere Ausgabepuffer bevor die Sperre frei gegeben wird
       flock($file, LOCK_UN); // Gib Sperre frei
-    } else {
-      print_r("Konnte Sperre nicht erhalten!");
     }
 
     fclose($file);
@@ -47,8 +45,6 @@ class Logger {
       fwrite($file, serialize($entries));
       fflush($file); // leere Ausgabepuffer bevor die Sperre frei gegeben wird
       flock($file, LOCK_UN); // Gib Sperre frei
-    } else {
-      print_r("Konnte Sperre nicht erhalten!");
     }
 
     fclose($file);
@@ -68,8 +64,6 @@ class Logger {
       }
       fflush($file); // leere Ausgabepuffer bevor die Sperre frei gegeben wird
       flock($file, LOCK_UN); // Gib Sperre frei
-    } else {
-      print_r("Konnte Sperre nicht erhalten!");
     }
 
     fclose($file);
