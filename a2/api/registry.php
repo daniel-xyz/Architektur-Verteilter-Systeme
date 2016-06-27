@@ -22,12 +22,16 @@ function addToIpList($name, $ip) {
 
   $ipList = $fileHandler->deserialize($fileName);
 
-    $ipList[$ip] = array (
-      'Name' => $name,
-      'IP' => $ip
-    );
+  if (!is_array($ipList)) {
+    $ipList = array();
+  }
 
-    $fileHandler->serialize($fileName, $ipList);
+  $ipList[$ip] = array(
+    'Name' => $name,
+    'IP' => $ip
+  );
+
+  $fileHandler->serialize($fileName, $ipList);
 
   if (count($ipList) > 0) {
     echo json_encode($ipList);
