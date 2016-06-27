@@ -1,8 +1,8 @@
 <?php
 
 require_once 'HTTP/Request2.php';
-require_once('../class/Logger.class.php');
-require_once('../class/FileHandler.class.php');
+require_once('Logger.class.php');
+require_once('FileHandler.class.php');
 
 class MessageCollector {
 
