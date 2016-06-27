@@ -12,7 +12,7 @@ class Logger {
     $entries = $fileHandler->deserialize($this->fileName);
     $entries[$message['time']] = $message;
     $fileHandler->serialize($this->fileName, $entries);
-    print_r($entries); // Nur zum Debuggen, um das Array im Browser in der Response zu sehen.
+    print_r($entries); // Nur zum Debuggen, um das Array im Browser in der Response zu sehen
   }
 
   public function getLog() {
