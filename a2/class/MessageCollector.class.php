@@ -8,7 +8,7 @@ class MessageCollector {
 
   private $fileHandler;
   private $logger;
-  private $fileName = '../persistence/iplist.txt';
+  private $fileName = 'persistence/iplist.txt';
   private $keepCollecting = true;
 
   function __construct() {
