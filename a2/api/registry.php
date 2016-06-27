@@ -14,8 +14,6 @@ if (!empty($_REQUEST['name'])) {
   } else {
     user_error("IP konnte nicht ermittelt werden.");
   }
-} else {
-  var_dump(http_response_code(409));
 }
 
 function addToIpList($name, $ip) {
@@ -33,8 +31,5 @@ function addToIpList($name, $ip) {
 
   if (count($ipList) > 0) {
     echo json_encode($ipList);
-    var_dump(http_response_code(200));
-  } else {
-    var_dump(http_response_code(505));
   }
 }
