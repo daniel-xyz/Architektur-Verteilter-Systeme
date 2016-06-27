@@ -37,3 +37,5 @@ function addToIpList($name, $ip) {
     echo json_encode($ipList);
   }
 }
+
+// TODO a new function to notify all servers when a new server was added to the registry

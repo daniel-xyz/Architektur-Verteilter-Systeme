@@ -3,8 +3,6 @@
 require_once 'HTTP/Request2.php';
 require_once 'class/FileHandler.class.php';
 
-// TODO Server should know his own ip somehow
-
 $registryServer = '';
 $serverName = '';
 

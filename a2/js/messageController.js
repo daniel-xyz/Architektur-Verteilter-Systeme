@@ -17,7 +17,7 @@ function sendMessage() {
       msg('Nachricht wurde angelegt.');
     })
     .fail(function() {
-      error('Nachricht konnte nicht gespeichert werden.'); // TODO: 404er vom Backend zurückgeben (vom Logger den Error durchreichen)
+      error('Nachricht konnte nicht gespeichert werden.');
     });
 }
 
