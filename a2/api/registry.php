@@ -17,7 +17,7 @@ if (!empty($_REQUEST['name'])) {
 }
 
 function addToIpList($name, $ip) {
-  $fileName = 'persistence/iplist.txt';
+  $fileName = '../persistence/iplist.txt';
   $fileHandler = new FileHandler();
 
   $ipList = $fileHandler->deserialize($fileName);
