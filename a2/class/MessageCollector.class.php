@@ -38,7 +38,7 @@ class MessageCollector {
       $response = $request->send();
 
       if (200 == $response->getStatus()) {
-        $entryJson = $response->getBody(); // TODO $body ist kein array
+        $entryJson = $response->getBody();
         $entryArray = json_decode($entryJson, true);
 
         $entry['time'] = strtotime($entryArray['message']['time']);
