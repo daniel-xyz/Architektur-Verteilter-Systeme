@@ -20,8 +20,7 @@ function addToIpList($name, $ip) {
   $fileName = '../persistence/iplist.txt';
   $fileHandler = new FileHandler();
 
-  $ipListJson = $fileHandler->deserialize($fileName);
-  $ipList = json_decode($ipListJson, true);
+  $ipList = $fileHandler->deserialize($fileName);
 
   if (!is_array($ipList)) {
     $ipList = array();

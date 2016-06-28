@@ -19,7 +19,9 @@ if(!empty($_REQUEST['name'] && !empty($_REQUEST['ip']))) {
     $response = $request->send();
 
     if (200 == $response->getStatus()) {
-      $ipList = $response->getBody();
+      $ipListJson = $response->getBody();
+      $ipList = json_decode($ipListJson, true);
+
       $fileHandler = new FileHandler();
       $fileHandler->serialize('persistence/iplist.txt', $ipList); // TODO iplist ist kein array
       echo json_encode($response);
