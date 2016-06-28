@@ -44,6 +44,7 @@ class MessageCollector {
         $entry['time'] = strtotime($entryArray['message']['time']);
         $entry['from'] = $entryArray['message']['from'];
         $entry['message'] = $entryArray['message']['message'];
+        $entry['more'] = $entryArray['more'];
 
         $this->logger->log($entry);
 
