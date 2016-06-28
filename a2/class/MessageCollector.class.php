@@ -45,7 +45,7 @@ class MessageCollector {
         $entry['from'] = $entryArray['message']['from'];
         $entry['message'] = $entryArray['message']['message'];
 
-        if (!empty$entry['time'] && !empty$entry['from'] && !empty$entry['message']) {
+        if (!empty($entry['time']) && !empty($entry['from']) && !empty($entry['message'])) {
           $this->logger->log($entry);
         }
 
