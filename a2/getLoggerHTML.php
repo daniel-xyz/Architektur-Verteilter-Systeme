@@ -18,7 +18,5 @@ if (!empty($entry)) {
   $response['message']['message'] = $entry['message'];
   $response['more'] = $entry['more'];
   echo json_encode($response);
-  http_response_code(200);
 } else {
-  http_response_code(404);
 }
