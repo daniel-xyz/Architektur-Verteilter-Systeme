@@ -50,7 +50,7 @@ class MessageCollector {
           $this->keepCollecting = false;
         }
       } else {
-        echo 'Unerwarteter HTTP-Status vom Registry-Server: ' . $response->getStatus() . '. ' . $response->getReasonPhrase() . ' ';
+        echo 'Unerwarteter HTTP-Status vom Server' . $ip . ':'  . $response->getStatus() . '. ' . $response->getReasonPhrase() . ' ';
       }
     } catch (HTTP_Request2_Exception $e) {
       echo 'Fehler: ' . $e->getMessage();
