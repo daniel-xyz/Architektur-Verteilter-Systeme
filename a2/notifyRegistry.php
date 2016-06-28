@@ -21,7 +21,7 @@ if(!empty($_REQUEST['name'] && !empty($_REQUEST['ip']))) {
     if (200 == $response->getStatus()) {
       $ipList = $response->getBody();
       $fileHandler = new FileHandler();
-      //$fileHandler->serialize('persistence/iplist.txt', $ipList);
+      $fileHandler->serialize('persistence/iplist.txt', $ipList); // TODO iplist ist kein array
       echo json_encode($response);
     } else {
       echo 'Unerwarteter HTTP-Status vom Registry-Server: ' . $response->getStatus() . '. ' . $response->getReasonPhrase() . ' ';
