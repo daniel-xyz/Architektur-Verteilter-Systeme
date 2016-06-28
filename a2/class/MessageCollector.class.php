@@ -52,6 +52,7 @@ class MessageCollector {
           $this->keepCollecting = false;
         }
       } else {
+        $this->keepCollecting = false;
         echo 'Unerwarteter HTTP-Status vom Server' . $ip . ':'  . $response->getStatus() . '. ' . $response->getReasonPhrase() . ' ';
       }
     } catch (HTTP_Request2_Exception $e) {
