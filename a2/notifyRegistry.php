@@ -30,11 +30,5 @@ if(!empty($_REQUEST['name'] && !empty($_REQUEST['ip']))) {
     }
   } catch (HTTP_Request2_Exception $e) {
     echo 'Fehler: ' . $e->getMessage();
-    var_dump(http_response_code(500));
-  } finally {
-    var_dump(http_response_code($response->getStatus()));
   }
-} else {
-  echo('Name und IP dürfen im Request nicht fehlen. ');
-  var_dump(http_response_code(409));
 }

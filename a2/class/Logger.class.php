@@ -33,7 +33,6 @@ class Logger {
 
   public function resetLog() {
     $fileHandler = new FileHandler();
-
     $fileHandler->emptyFile($this->fileName);
   }
 }

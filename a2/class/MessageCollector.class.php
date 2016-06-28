@@ -56,10 +56,7 @@ class MessageCollector {
       }
     } catch (HTTP_Request2_Exception $e) {
       echo 'Fehler: ' . $e->getMessage();
-      var_dump(http_response_code(500));
       $this->keepCollecting = false;
-    } finally {
-      var_dump(http_response_code($response->getStatus()));
     }
   }
 }
