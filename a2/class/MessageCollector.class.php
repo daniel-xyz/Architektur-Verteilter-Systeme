@@ -19,8 +19,8 @@ class MessageCollector {
   public function collect() {
     $ipList = $this->fileHandler->deserialize($this->fileName);
 
-    if (is_array($ipList)) {
-      foreach ($ipList['others'] as $server) {
+    if (is_array($ipList) && count($ipList["others"]) > 0) {
+      foreach ($ipList["others"] as $server) {
         $this->keepCollecting = true;
 
         error_log("MessageCollector: Check if " . $server['IP'] . " equals local server " . $ipList["myIP"] . " ...");
