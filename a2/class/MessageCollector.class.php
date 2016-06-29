@@ -47,6 +47,8 @@ class MessageCollector {
         $entry['from'] = $entryArray['message']['from'];
         $entry['message'] = $entryArray['message']['message'];
 
+        error_log("Try sending message to Logger.class.php: " . print_r($entry) . " ...");
+
         if (!empty($entry['time']) && !empty($entry['from']) && !empty($entry['message'])) {
           $this->logger->log($entry);
           error_log("Sent message to Logger.class.php: " . print_r($entry));
