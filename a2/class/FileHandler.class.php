@@ -1,7 +1,7 @@
 <?php
 
 class FileHandler {
-
+  
   public function serialize($fileName, $content) {
     $file = fopen($fileName, "r+");
 
