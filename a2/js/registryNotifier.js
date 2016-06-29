@@ -15,25 +15,4 @@ function notifyRegistry() {
     .fail(function() {
       error('Es ist leider etwas schief gelaufen.');
     });
-
-  function showIpList(array) {
-    //var list;
-    //
-    //jQuery.each( arr, function( i, val ) {
-    //  $( "#" + val ).text( "Mine is " + val + "." );
-    //
-    //  // Will stop running after "three"
-    //  return ( val !== "three" );
-    //});
-    //
-    //  '<div class="entry" style="display:none;">' +
-    //  '<p>' +
-    //  response.message.time +
-    //  ', ' + response.message.from +
-    //  ': ' + response.message.message +
-    //  '</p>' +
-    //  '</div>';
-    //
-    //$(list).appendTo('.ip-list-container').fadeIn('slow');
-  }
 }

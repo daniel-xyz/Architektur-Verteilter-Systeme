@@ -46,14 +46,15 @@ class MessageCollector {
         $entry['time'] = strtotime($entryArray['message']['time']);
         $entry['from'] = $entryArray['message']['from'];
         $entry['message'] = $entryArray['message']['message'];
+        $entry['timestamp'] = $entryArray['message']['timestamp'];
 
         error_log("Try sending message to Logger.class.php:" .
-          " time: " . $entry['time'] .
           " from: " . $entry['from'] .
           " message: " . $entry['message'] .
+          " timestamp: " . $entry['timestamp'] .
           " ...");
 
-        if (!empty($entry['time']) && !empty($entry['from']) && !empty($entry['message'])) {
+        if (!empty($entry['from']) && !empty($entry['message']) && !empty($entry['timestamp'])) {
           $this->logger->log($entry);
           error_log("Sent message to Logger.class.php.");
         }

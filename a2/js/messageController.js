@@ -2,16 +2,17 @@ var loadMessages,
     messageCounter = 0;
 
 function sendMessage() {
-  var time = Math.floor(Date.now() / 1000);
   var from = "Manfred";
   var message = "Hier könnte eine interessantere Nachricht stehen.";
+  var timestamp = Math.floor(Date.now() / 1000);
+
 
   resetStatusMessages();
 
   $.get("logger.php", {
-    time: time,
     from: from,
-    message: message
+    message: message,
+    timestamp: timestamp
   })
     .success(function() {
       msg('Nachricht wurde angelegt.');

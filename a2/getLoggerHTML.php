@@ -14,9 +14,10 @@ if ($_SERVER['REMOTE_ADDR'] == $_SERVER['SERVER_ADDR']) {
 $entry = $logger->getLog();
 
 if (!empty($entry)) {
-  $response['message']['time'] = date('d.m.Y \u\m G:i:s', $entry['time']);
+  $response['message']['time'] = date('d.m.Y \u\m G:i:s', $entry['timestamp']);
   $response['message']['from'] = $entry['from'];
   $response['message']['message'] = $entry['message'];
+  $response['message']['timestamp'] = $entry['timestamp'];
   $response['more'] = $entry['more'];
   http_response_code(200);
   echo json_encode($response);

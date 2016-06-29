@@ -6,11 +6,11 @@ class Logger {
 
   private $fileName = 'persistence/messages.txt';
 
-  public function log($message) {
+  public function log($entry) {
     $fileHandler = new FileHandler();
 
     $entries = $fileHandler->deserialize($this->fileName);
-    $entries[$message['time']] = $message;
+    $entries[$entry['timestamp']] = $entry;
     $fileHandler->serialize($this->fileName, $entries);
     print_r($entries); // Nur zum Debuggen, um das Array im Browser in der Response zu sehen
   }
