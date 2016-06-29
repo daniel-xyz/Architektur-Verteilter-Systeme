@@ -26,14 +26,14 @@ function addToIpList($name, $ip) {
     $ipList = array();
   }
 
-  $ipList["all"][$ip] = array(
+  $ipList['all'][$ip] = array(
     'Name' => $name,
     'IP' => $ip
   );
 
   $fileHandler->serialize($fileName, $ipList);
 
-  $ipList["myIP"] = $ip;
+  $ipList['myIP'] = $ip;
 
   if (count($ipList) > 0) {
     echo json_encode($ipList);

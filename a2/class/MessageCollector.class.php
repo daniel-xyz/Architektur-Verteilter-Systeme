@@ -19,11 +19,11 @@ class MessageCollector {
     $this->fileHandler = new FileHandler();
     $ipList = $this->fileHandler->deserialize($this->fileName);
 
-    if (is_array($ipList) && array_key_exists("all", $ipList) && count($ipList["all"]) > 0) {
-      foreach ($ipList["all"] as $server) {
+    if (is_array($ipList) && array_key_exists('all', $ipList) && count($ipList['all']) > 0) {
+      foreach ($ipList['all'] as $server) {
         $this->keepCollecting = true;
 
-        if ($server['IP'] != $ipList["myIP"]) {
+        if ($server['IP'] != $ipList['myIP']) {
           do {
             $this->getExternalLog($server['IP']);
           } while ($this->keepCollecting == true);
@@ -43,9 +43,11 @@ class MessageCollector {
         $entryJson = $response->getBody();
         $entryArray = json_decode($entryJson, true);
 
-        $entry['from'] = $entryArray['message']['from'];
-        $entry['message'] = $entryArray['message']['message'];
-        $entry['timestamp'] = $entryArray['message']['timestamp'];
+        $entry = array (
+          'from' => $entryArray['message']['from'],
+          'message' => $entryArray['message']['message'],
+          'timestamp' => $entryArray['message']['timestamp']
+        );
 
         error_log("Try sending message to Logger.class.php:" .
           " from: " . $entry['from'] .
