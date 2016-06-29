@@ -13,7 +13,7 @@ if ($_SERVER['REMOTE_ADDR'] == $_SERVER['SERVER_ADDR']) {
 
 $entry = $logger->getLog();
 
-if (!empty($entry) && count($entry) > 0) {
+if (!empty($entry) && count($entry) == 5) {
   $response['message']['time'] = date('d.m.Y \u\m G:i:s', $entry['timestamp']);
   $response['message']['from'] = $entry['from'];
   $response['message']['message'] = $entry['message'];
