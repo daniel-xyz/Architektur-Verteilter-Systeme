@@ -19,7 +19,7 @@ class MessageCollector {
   public function collect() {
     $ipList = $this->fileHandler->deserialize($this->fileName);
 
-    if (is_array($ipList) && count($ipList["others"]) > 0) {
+    if (is_array($ipList) && array_key_exists("others", $ipList) && count($ipList["others"]) > 0) {
       foreach ($ipList["others"] as $server) {
         $this->keepCollecting = true;
 
