@@ -9,10 +9,11 @@ if(!empty($_REQUEST['message']) && !empty($_REQUEST['timestamp']) ) {
   $ipList = $fileHandler->deserialize('persistence/iplist.txt');
   $from = 'default';
 
-  if ($_SERVER['REMOTE_ADDR'] == $_SERVER['SERVER_ADDR']) {
-    $from = $ipList['me']['name'];
+  // Nachricht kommt von einem anderen Server
+  if(!empty($_REQUEST['from'])) {
+    $from = $_REQUEST['from'];
   } else {
-    $from = $ipList['all'][$_SERVER['REMOTE_ADDR']]['name'];
+    $from = $ipList['me']['name'];
   }
 
   $entry = array (
@@ -20,6 +21,7 @@ if(!empty($_REQUEST['message']) && !empty($_REQUEST['timestamp']) ) {
     'message' => $_REQUEST['message'],
     'timestamp' => $_REQUEST['timestamp']
   );
+
   $logger = new Logger();
   $logger->log($entry);
 }

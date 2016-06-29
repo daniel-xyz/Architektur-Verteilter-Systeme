@@ -22,32 +22,32 @@ class MessageCollector {
 
         if ($server['IP'] != $ipList['me']['IP']) {
           do {
-            $this->getExternalLog($server['IP'], $ipList['me']['IP']);
+            $this->getExternalLog($server, $ipList['me']['IP']);
           } while ($this->keepCollecting == true);
         }
       }
     }
   }
 
-  private function getExternalLog($ip, $myIP) {
-    error_log("MessageCollector: getExternalLog() for " . $ip . " ...");
-    $request = new HTTP_Request2('http://' . $ip . '/Architektur-Verteilter-Systeme/a2/getLoggerHTML.php', HTTP_Request2::METHOD_GET);
+  private function getExternalLog($server, $myIP) {
+    error_log("MessageCollector: getExternalLog() for " . $server['IP'] . " ...");
+    $request = new HTTP_Request2('http://' . $server['IP'] . '/Architektur-Verteilter-Systeme/a2/getLoggerHTML.php', HTTP_Request2::METHOD_GET);
 
     try {
       $response = $request->send();
 
       if (200 == $response->getStatus()) {
-        $entryJson = $response->getBody();
-        $entryArray = json_decode($entryJson, true);
+        $responseJson = $response->getBody();
+        $responseArray = json_decode($responseJson, true);
 
         $entry = array (
-          'from' => $entryArray['message']['from'],
-          'message' => $entryArray['message']['message'],
-          'timestamp' => $entryArray['message']['timestamp']
+          'from' => $server['name'],
+          'message' => $responseArray['message']['message'],
+          'timestamp' => $responseArray['message']['timestamp']
         );
 
         error_log("Try sending message to logger.php:" .
-          " from: " . $entry['from'] .
+          " from: " . $server['name'] .
           " message: " . $entry['message'] .
           " timestamp: " . $entry['timestamp'] .
           " ...");
@@ -64,7 +64,7 @@ class MessageCollector {
           }
         }
 
-        if ($entryArray['more'] < 1) {
+        if ($responseArray['more'] < 1) {
           $this->keepCollecting = false;
         }
       } else {
