@@ -11,7 +11,7 @@ if ($_SERVER['REMOTE_ADDR'] == $_SERVER['SERVER_ADDR']) {
   $messageCollector->collect();
 }
 
-$entry = empty;
+$entry = array();
 
 if (!empty($entry)) {
   $response['message']['time'] = date('d.m.Y \u\m G:i:s', $entry['timestamp']);
