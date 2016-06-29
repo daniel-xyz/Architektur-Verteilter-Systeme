@@ -20,17 +20,17 @@ class Logger {
 
     $oldestEntry = array();
     error_log("Logger getLog(): Start deserializing entries ...");
-//    $entries = $fileHandler->deserialize($this->fileName);
-//
-//    if (count($entries) > 0) {
-//      error_log("Logger: Start sorting entries ...");
-//      krsort($entries);
-//      $oldestEntry = array_pop($entries);
-//      $oldestEntry['more'] = count($entries);
-//      $fileHandler->serialize($this->fileName, $entries);
-//    }
-//
-//    return $oldestEntry;
+    $entries = $fileHandler->deserialize($this->fileName);
+
+    if (count($entries) > 0) {
+      error_log("Logger: Start sorting entries ...");
+      krsort($entries);
+      $oldestEntry = array_pop($entries);
+      $oldestEntry['more'] = count($entries);
+      $fileHandler->serialize($this->fileName, $entries);
+    }
+
+    return $oldestEntry;
   }
 
   public function resetLog() {
