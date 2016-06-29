@@ -19,5 +19,9 @@ if (!empty($entry)) {
   $response['message']['message'] = $entry['message'];
   $response['message']['timestamp'] = $entry['timestamp'];
   $response['more'] = $entry['more'];
+  http_response_code(200);
   echo json_encode($response);
+} else {
+  error_log("getLoggerHTML.php: Got no messages from Logger.");
+  http_response_code(404);
 }
