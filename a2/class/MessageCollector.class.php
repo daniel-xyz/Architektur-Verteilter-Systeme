@@ -68,7 +68,7 @@ class MessageCollector {
           $this->keepCollecting = false;
         }
       } else {
-        error_log("MessageCollector: No messages found on " . $ip . ".");
+        error_log("MessageCollector: No messages found on " . $server['IP'] . ".");
         $this->keepCollecting = false;
       }
     } catch (HTTP_Request2_Exception $e) {
