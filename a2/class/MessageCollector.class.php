@@ -23,9 +23,9 @@ class MessageCollector {
       foreach ($ipList as $server) {
         $this->keepCollecting = true;
 
-        error_log("MessageCollector: Check if " . $server['IP'] . " equals local server " . $_SERVER['SERVER_ADDR'] . " ...");
+        error_log("MessageCollector: Check if " . $server['IP'] . " equals local server " . $ipList["myIP"] . " ...");
 
-        if ($server['IP'] != $_SERVER['SERVER_ADDR']) {
+        if ($server['IP'] != $ipList["myIP"]) {
           do {
             $this->getExternalLog($server['IP']);
           } while ($this->keepCollecting == true);
