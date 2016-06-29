@@ -19,6 +19,8 @@ class MessageCollector {
   public function collect() {
     $ipList = $this->fileHandler->deserialize($this->fileName);
 
+    error_log("ipList deserialized: " . $ipList);
+
     if (is_array($ipList)) {
       foreach ($ipList as $server) {
         $this->keepCollecting = true;
@@ -32,6 +34,7 @@ class MessageCollector {
   }
 
   private function getExternalLog($ip) {
+    error_log("getExternalLog for" . $ip . " ...");
     $request = new HTTP_Request2('http://' . $ip . '/Architektur-Verteilter-Systeme/a2/getLoggerHTML.php', HTTP_Request2::METHOD_GET);
 
     try {

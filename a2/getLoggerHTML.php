@@ -6,9 +6,9 @@ require_once('class/MessageCollector.class.php');
 $logger = new Logger();
 $messageCollector = new MessageCollector();
 
-//if ($_SERVER['REMOTE_ADDR'] == $_SERVER['SERVER_ADDR']) {
-//  $messageCollector->collect();
-//}
+if ($_SERVER['REMOTE_ADDR'] == $_SERVER['SERVER_ADDR']) {
+  $messageCollector->collect();
+}
 
 $entry = $logger->getLog();
 
