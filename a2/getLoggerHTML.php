@@ -21,7 +21,4 @@ if (!empty($entry)) {
   $response['more'] = $entry['more'];
   http_response_code(200);
   echo json_encode($response);
-} else {
-  error_log("getLoggerHTML.php: Got no messages from Logger.");
-  http_response_code(404);
 }
