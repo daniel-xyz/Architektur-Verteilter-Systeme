@@ -20,5 +20,4 @@ if (!empty($entry)) {
   $response['message']['timestamp'] = $entry['timestamp'];
   $response['more'] = $entry['more'];
   echo json_encode($response);
-  http_response_code(200);
 }
