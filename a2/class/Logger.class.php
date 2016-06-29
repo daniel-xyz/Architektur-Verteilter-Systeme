@@ -27,7 +27,7 @@ class Logger {
       krsort($entries);
       $oldestEntry = array_pop($entries);
       $oldestEntry['more'] = count($entries);
-      $fileHandler->serialize($this->fileName, $entries);
+      //$fileHandler->serialize($this->fileName, $entries);
     }
 
     return $oldestEntry;
