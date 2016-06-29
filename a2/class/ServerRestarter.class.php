@@ -5,17 +5,17 @@ require_once 'HTTP/Request2.php';
 
 class ServerRestarter {
 
-  private $filehandler;
+  private $fileHandler;
 
   function __construct() {
-    $this->filehandler = new FileHandler();
+    $this->fileHandler = new FileHandler();
   }
 
   public function restartAllServers() {
     $ipList = $this->fileHandler->deserialize('persistence/iplist.txt');
 
     if (is_array($ipList) && array_key_exists('all', $ipList) && count($ipList['all']) > 0) {
-      foreach ($this->ipList['all'] as $server) {
+      foreach ($ipList['all'] as $server) {
         if ($server['IP'] != $ipList['me']['IP']) {
           $this->restart($server['IP']);
         }
