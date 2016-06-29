@@ -20,7 +20,7 @@ class Logger {
 
     $oldestEntry = array();
     error_log("Logger getLog(): Start deserializing entries ...");
-    $entries = $fileHandler->deserialize($this->fileName); // TODO bug: ﻿PHP Notice:  unserialize(): Error at offset 155 of 156 bytes in /opt/lampp/htdocs/Architektur-Verteilter-Systeme/a2/class/FileHandler.class.php on line 27
+    $entries = $fileHandler->deserialize($this->fileName);
 
     if (count($entries) > 0) {
       error_log("Logger: Start sorting entries ...");
