@@ -26,7 +26,7 @@ function addToIpList($name, $ip) {
     $ipList = array();
   }
 
-  $ipList["others"][$ip] = array(
+  $ipList["all"][$ip] = array(
     'Name' => $name,
     'IP' => $ip
   );
