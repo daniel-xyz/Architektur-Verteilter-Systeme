@@ -6,10 +6,10 @@ class FileHandler {
     $file = fopen($fileName, "r+");
 
     if (flock($file, LOCK_EX)) { // exklusive Sperre
-      ftruncate($file, 0); // kürze Datei
+      ftruncate($file, 0); // Datei kürzen
       fwrite($file, base64_encode(serialize($content)));
       fflush($file); // leere Ausgabepuffer bevor die Sperre frei gegeben wird
-      flock($file, LOCK_UN); // Gib Sperre frei
+      flock($file, LOCK_UN);
     }
 
     fclose($file);
@@ -28,7 +28,7 @@ class FileHandler {
       }
 
       fflush($file); // leere Ausgabepuffer bevor die Sperre frei gegeben wird
-      flock($file, LOCK_UN); // Gib Sperre frei
+      flock($file, LOCK_UN);
     }
 
     fclose($file);
@@ -40,9 +40,9 @@ class FileHandler {
     $file = fopen($fileName, "r+");
 
     if (flock($file, LOCK_EX)) { // exklusive Sperre
-      ftruncate($file, 0); // kürze Datei
+      ftruncate($file, 0); // Datei kürzen
       fflush($file); // leere Ausgabepuffer bevor die Sperre frei gegeben wird
-      flock($file, LOCK_UN); // Gib Sperre frei
+      flock($file, LOCK_UN);
     }
 
     fclose($file);
