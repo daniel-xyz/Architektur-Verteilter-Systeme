@@ -2,15 +2,13 @@ var loadMessages,
     messageCounter = 0;
 
 function sendMessage() {
-  var from = "Manfred";
-  var message = "Hier könnte eine interessantere Nachricht stehen.";
+  var message = "Ich habe eine lange Reise von Requests hinter mir!";
   var timestamp = Math.floor(Date.now() / 1000);
 
 
   resetStatusMessages();
 
   $.get("logger.php", {
-    from: from,
     message: message,
     timestamp: timestamp
   })

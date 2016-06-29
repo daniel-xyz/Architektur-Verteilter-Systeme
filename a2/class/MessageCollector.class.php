@@ -6,7 +6,6 @@ require_once('FileHandler.class.php');
 class MessageCollector {
 
   private $fileHandler;
-  private $fileName = 'persistence/iplist.txt';
   private $keepCollecting = true;
 
   function __construct() {
@@ -15,15 +14,15 @@ class MessageCollector {
 
   public function collect() {
     $this->fileHandler = new FileHandler();
-    $ipList = $this->fileHandler->deserialize($this->fileName);
+    $ipList = $this->fileHandler->deserialize('persistence/iplist.txt');
 
     if (is_array($ipList) && array_key_exists('all', $ipList) && count($ipList['all']) > 0) {
       foreach ($ipList['all'] as $server) {
         $this->keepCollecting = true;
 
-        if ($server['IP'] != $ipList['myIP']) {
+        if ($server['IP'] != $ipList['me']['IP']) {
           do {
-            $this->getExternalLog($server['IP'], $ipList['myIP']);
+            $this->getExternalLog($server['IP'], $ipList['me']['IP']);
           } while ($this->keepCollecting == true);
         }
       }
