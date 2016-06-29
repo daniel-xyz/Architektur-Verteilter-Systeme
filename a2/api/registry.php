@@ -33,6 +33,9 @@ function addToIpList($name, $ip) {
 
   $fileHandler->serialize($fileName, $ipList);
 
+  $ipList["myIP"] = $ip;
+  )
+
   if (count($ipList) > 0) {
     echo json_encode($ipList);
   }

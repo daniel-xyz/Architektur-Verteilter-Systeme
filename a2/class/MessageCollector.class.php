@@ -23,7 +23,7 @@ class MessageCollector {
       foreach ($ipList as $server) {
         $this->keepCollecting = true;
 
-        error_log("Check if " . $server['IP'] . "equals local server " . $_SERVER['SERVER_ADDR'] . " ...");
+        error_log("MessageCollector: Check if " . $server['IP'] . " equals local server " . $_SERVER['SERVER_ADDR'] . " ...");
 
         if ($server['IP'] != $_SERVER['SERVER_ADDR']) {
           do {
@@ -35,7 +35,7 @@ class MessageCollector {
   }
 
   private function getExternalLog($ip) {
-    error_log("getExternalLog for" . $ip . " ...");
+    error_log("MessageCollector: getExternalLog() for" . $ip . " ...");
     $request = new HTTP_Request2('http://' . $ip . '/Architektur-Verteilter-Systeme/a2/getLoggerHTML.php', HTTP_Request2::METHOD_GET);
 
     try {

@@ -7,6 +7,7 @@ $logger = new Logger();
 $messageCollector = new MessageCollector();
 
 if ($_SERVER['REMOTE_ADDR'] == $_SERVER['SERVER_ADDR']) {
+  error_log("getLoggerHTML.php: Request from same ip (remote: " . $_SERVER['REMOTE_ADDR'] . ", local: " . $_SERVER['SERVER_ADDR'] . ", therefore start collecting messages from other servers.");
   $messageCollector->collect();
 }
 
