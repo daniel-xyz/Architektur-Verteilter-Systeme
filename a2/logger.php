@@ -12,7 +12,7 @@ if(!empty($_REQUEST['message']) && !empty($_REQUEST['timestamp']) ) {
   // Nachricht kommt von einem anderen Server
   if(!empty($_REQUEST['from'])) {
     $from = $_REQUEST['from'];
-  } else {
+  } else if (array_key_exists(['me']['name'], $ipList)) {
     $from = $ipList['me']['name'];
   }
 
