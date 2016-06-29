@@ -20,7 +20,7 @@ class MessageCollector {
     $ipList = $this->fileHandler->deserialize($this->fileName);
 
     if (is_array($ipList)) {
-      foreach ($ipList as $server) {
+      foreach ($ipList['others'] as $server) {
         $this->keepCollecting = true;
 
         error_log("MessageCollector: Check if " . $server['IP'] . " equals local server " . $ipList["myIP"] . " ...");
@@ -35,7 +35,7 @@ class MessageCollector {
   }
 
   private function getExternalLog($ip) {
-    error_log("MessageCollector: getExternalLog() for" . $ip . " ...");
+    error_log("MessageCollector: getExternalLog() for " . $ip . " ...");
     $request = new HTTP_Request2('http://' . $ip . '/Architektur-Verteilter-Systeme/a2/getLoggerHTML.php', HTTP_Request2::METHOD_GET);
 
     try {
