@@ -43,7 +43,6 @@ class MessageCollector {
         $entryJson = $response->getBody();
         $entryArray = json_decode($entryJson, true);
 
-        $entry['time'] = strtotime($entryArray['message']['time']);
         $entry['from'] = $entryArray['message']['from'];
         $entry['message'] = $entryArray['message']['message'];
         $entry['timestamp'] = $entryArray['message']['timestamp'];
