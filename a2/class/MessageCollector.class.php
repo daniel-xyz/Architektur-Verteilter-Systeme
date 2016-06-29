@@ -12,11 +12,11 @@ class MessageCollector {
   private $keepCollecting = true;
 
   function __construct() {
-    $this->fileHandler = new FileHandler();
-    $this->logger = new Logger();
+
   }
 
   public function collect() {
+    $this->fileHandler = new FileHandler();
     $ipList = $this->fileHandler->deserialize($this->fileName);
 
     if (is_array($ipList) && array_key_exists("all", $ipList) && count($ipList["all"]) > 0) {
@@ -54,6 +54,7 @@ class MessageCollector {
           " ...");
 
         if (!empty($entry['from']) && !empty($entry['message']) && !empty($entry['timestamp'])) {
+          $this->logger = new Logger();
           $this->logger->log($entry);
           error_log("Sent message to Logger.class.php.");
         }
