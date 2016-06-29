@@ -23,8 +23,6 @@ class MessageCollector {
       foreach ($ipList["others"] as $server) {
         $this->keepCollecting = true;
 
-        error_log("MessageCollector: Check if " . $server['IP'] . " equals local server " . $ipList["myIP"] . " ...");
-
         if ($server['IP'] != $ipList["myIP"]) {
           do {
             $this->getExternalLog($server['IP']);
@@ -51,6 +49,7 @@ class MessageCollector {
 
         if (!empty($entry['time']) && !empty($entry['from']) && !empty($entry['message'])) {
           $this->logger->log($entry);
+          error_log("Sent message to Logger.class.php: " . print_r($entry));
         }
 
         if ($entryArray['more'] < 1) {
