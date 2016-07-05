@@ -46,7 +46,7 @@ function addToIpList($name, $ip) {
 
 function triggerNeighborNotifications() {
   try {
-    $request = new HTTP_Request2('yourNeighbor.php');
+    $request = new HTTP_Request2('http://' . $_SERVER['SERVER_ADDR'] . '/Architektur-Verteilter-Systeme/a3/yourNeighbor.php');
     $request->setMethod(HTTP_Request2::METHOD_POST);
     $request->send();
   } catch (Exception $exc) {
