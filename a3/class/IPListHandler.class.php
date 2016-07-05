@@ -5,20 +5,19 @@ require_once('FileHandler.class.php');
 class IPListHandler {
 
   private $fileHandler;
-  private $fileName = 'dirname(__FILE__)'. '/../persistence/iplist.txt';
 
   function __construct() {
     $this->fileHandler = new FileHandler();
   }
 
   public function update($ipList) {
-    $deserialized = $this->fileHandler->deserialize($this->fileName);
+    $deserialized = $this->fileHandler->deserialize('persistence/iplist.txt');
     $deserialized['all'] = $ipList;
     $this->fileHandler->serialize($this->fileName, $deserialized);
   }
 
   public function getList() {
-    $ipList = $this->fileHandler->deserialize($this->fileName);
+    $ipList = $this->fileHandler->deserialize('persistence/iplist.txt');
 
     if (array_key_exists('all', $ipList)) {
       return $ipList['all'];
@@ -39,14 +38,14 @@ class IPListHandler {
   }
 
   public function setMyIP($ip, $name) {
-    $ipList = $this->fileHandler->deserialize($this->fileName);
+    $ipList = $this->fileHandler->deserialize('persistence/iplist.txt');
     $ipList['me']['IP'] = $ip;
     $ipList['me']['name'] = $name;
-    $this->fileHandler->serialize($this->fileName, $ipList);
+    $this->fileHandler->serialize('persistence/iplist.txt');
   }
 
   public function getMyIP() {
-    $ipList = $this->fileHandler->deserialize($this->fileName);
+    $ipList = $this->fileHandler->deserialize('persistence/iplist.txt');
 
     if (array_key_exists('me', $ipList)) {
       return $ipList['me']['IP'];
@@ -56,7 +55,7 @@ class IPListHandler {
   }
 
   public function getMyName() {
-    $ipList = $this->fileHandler->deserialize($this->fileName);
+    $ipList = $this->fileHandler->deserialize('persistence/iplist.txt');
     return $ipList['me']['name'];
   }
 }
