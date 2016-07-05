@@ -5,7 +5,7 @@ require_once('FileHandler.class.php');
 class IPListHandler {
 
   private $fileHandler;
-  private $fileName = __FILE__ . '../persistence/iplist.txt';
+  private $fileName = 'dirname(__FILE__)'. '/../persistence/iplist.txt';
 
   function __construct() {
     $this->fileHandler = new FileHandler();
