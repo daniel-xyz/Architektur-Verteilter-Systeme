@@ -11,9 +11,11 @@ if (!empty($_REQUEST['name'])) {
   if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
     $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
     addToIpList($name, $ip);
+    triggerNeighborNotifications();
 } elseif(!empty($_SERVER['REMOTE_ADDR'])) {
     $ip = $_SERVER['REMOTE_ADDR'];
     addToIpList($name, $ip);
+    triggerNeighborNotifications();
   } else {
     user_error("IP konnte nicht ermittelt werden.");
   }
@@ -36,6 +38,8 @@ function addToIpList($name, $ip) {
     'name' => $name,
     'ip' => $ip
   );
+
+  error_log('Registry: Send response to new server: ' . $ipList[$ip]['name'] . ' ' . $ipList[$ip]['ip']);
 
   json_encode($yourIP);
 }
