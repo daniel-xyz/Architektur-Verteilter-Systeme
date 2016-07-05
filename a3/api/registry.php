@@ -52,6 +52,6 @@ function triggerNeighborNotifications() {
     $request->setMethod(HTTP_Request2::METHOD_POST);
     $request->send();
   } catch (Exception $exc) {
-    error_log($exc->getMessage()); // TODO ﻿Unable to connect to tcp://:80. Error: php_network_getaddresses: getaddrinfo failed:
+    error_log($exc->getMessage());
   }
 }

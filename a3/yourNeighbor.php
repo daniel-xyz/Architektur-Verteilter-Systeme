@@ -5,28 +5,41 @@ require_once('class/FileHandler.class.php');
 require_once('class/IPListHandler.class.php');
 
 $ipListHandler = new IPListHandler();
-$ipList = $ipListHandler->getList();
-$myIP = $ipListHandler->getMyIP();
+$ipList = array();
+$myIP = $_SERVER['SERVER_ADDR'];
 $initiator = "";
+$isInitiator = false;
+$isLoopStart = false;
+$isLoopEnd = false;
 
-if(empty($_REQUEST['initiator'])) {
-  $initiator = $_SERVER['SERVER_ADDR'];
+if (!empty($_REQUEST['initiator']) && !empty($_REQUEST['iplist'])) {
+  $initiator = $_REQUEST['initiator'];
+  $ipList = $_REQUEST['iplist'];
+}
+
+if (empty($_REQUEST['initiator'])) {
+  $ipList = $ipListHandler->getList();
+  $initiator = $myIP;
+  $isInitiator = true;
+  $isLoopStart = true;
   error_log("yourNeughbor.php: Iniitiert von " . $initiator);
 }
 
-if(!empty($_REQUEST['initiator']) && !empty($_REQUEST['iplist'] && $_REQUEST['initiator'] !== $myIP)) {
-  $initiator = $_REQUEST['initiator'];
-  $ipList = $_REQUEST['iplist'];
+if ($initiator === $myIP) {
+  $isInitiator = true;
+  $isLoopEnd = true;
+}
+
+if(!$isInitiator) {
   $ipListHandler->update($ipList);
 }
 
-if(empty($_REQUEST['initiator']) || $_REQUEST['initiator'] !== $myIP) {
-
+if(!$isLoopEnd) {
   $nextIP = "";
 
   if (is_array($ipList) && count($ipList) > 1) {
     $keys = array_keys($ipList);
-    $indexOfMyIP = array_search($_SERVER['SERVER_ADDR'], array_keys($ipList));
+    $indexOfMyIP = array_search($myIP, array_keys($ipList));
     error_log("Index meiner IP in der neuen IP-Liste: " . $indexOfMyIP);
 
     if ($indexOfMyIP < (count($ipList) - 1)) {
@@ -51,8 +64,6 @@ if(empty($_REQUEST['initiator']) || $_REQUEST['initiator'] !== $myIP) {
       error_log("yourNeughbor.php von " . $nextIP . " konnte nicht aufgerufen werden.");
     }
   }
-}
-
-if(!empty($_REQUEST['initiator']) && $_REQUEST['initiator'] === $myIP) {
+} else {
   error_log("yourNeighbor.php wurde fertig ausgeführt!");
 }
