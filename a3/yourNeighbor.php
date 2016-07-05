@@ -4,6 +4,8 @@ require_once('HTTP/Request2.php');
 require_once('class/FileHandler.class.php');
 require_once('class/IPListHandler.class.php');
 
+error_log("yourNeighbor.phpaufgerufen.");
+
 $ipListHandler = new IPListHandler();
 $ipList = $ipListHandler->getList();
 $myIP = $ipListHandler->getMyIP();

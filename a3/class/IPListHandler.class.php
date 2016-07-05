@@ -38,10 +38,7 @@ class IPListHandler {
       $keys = array_keys($ipList);
       $neighbor = $ipList[$keys[$indexOfMyIP + 1]];
 
-      error_log("Mein nächster Nachbar wäre: " . $neighbor['ip']);
-
       if (!empty($neighbor)) {
-
         error_log("Mein nächster Nachbar: " . $neighbor['ip']);
         return $neighbor['ip'];
       }
