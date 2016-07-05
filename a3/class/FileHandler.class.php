@@ -2,10 +2,14 @@
 
 class FileHandler {
 
-  private $path = '/../persistence/';
-  
+  private $path;
+
+  function __construct() {
+    $this->path = dirname(__FILE__) . '/../persistence/';
+  }
+
   public function serialize($fileName, $content) {
-    $file = fopen(dirname(__FILE__) . $this->path . $fileName, "r+");
+    $file = fopen($this->path . $fileName, "r+");
 
     if (flock($file, LOCK_EX)) { // exklusive Sperre
       ftruncate($file, 0); // Datei kürzen
