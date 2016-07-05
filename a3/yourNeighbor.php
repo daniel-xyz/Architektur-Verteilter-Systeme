@@ -7,6 +7,7 @@ require_once('class/IPListHandler.class.php');
 $ipListHandler = new IPListHandler();
 $ipList = $ipListHandler->getList();
 $myIP = $ipListHandler->getMyIP();
+$initiator = "";
 
 if(empty($_REQUEST['initiator'])) {
   $initiator = $_SERVER['SERVER_ADDR'];
