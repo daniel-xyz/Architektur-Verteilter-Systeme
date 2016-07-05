@@ -32,12 +32,12 @@ function addToIpList($name, $ip) {
 
   $ipListHandler->update($ipList);
 
-  $response = array(
+  $yourIP = array(
     'name' => $name,
     'ip' => $ip
   );
 
-  json_encode($response);
+  json_encode($yourIP);
   triggerNeighborNotifications();
 }
 
