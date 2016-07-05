@@ -45,14 +45,11 @@ function addToIpList($name, $ip) {
 }
 
 function triggerNeighborNotifications() {
-  global $ipListHandler;
-  $myIP = $ipListHandler->getMyIP();
-
   try {
-    $request = new HTTP_Request2('http://' . $myIP . '/Architektur-Verteilter-Systeme/a3/yourNeighbor.php');
+    $request = new HTTP_Request2('yourNeighbor.php');
     $request->setMethod(HTTP_Request2::METHOD_POST);
     $request->send();
   } catch (Exception $exc) {
-    error_log($exc->getMessage());
+    error_log($exc->getMessage()); // TODO ﻿Unable to connect to tcp://:80. Error: php_network_getaddresses: getaddrinfo failed:
   }
 }
