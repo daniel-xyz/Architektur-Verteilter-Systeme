@@ -19,13 +19,23 @@ class IPListHandler {
 
   public function getList() {
     $ipList = $this->fileHandler->deserialize($this->fileName);
-    return $ipList['all'];
+
+    if (array_key_exists('all', $ipList)) {
+      return $ipList['all'];
+    } else {
+      return array();
+    }
   }
 
   public function getMyNextNeighborsIP() {
     $ipList = $this->getList();
     $myIP = $this->getMyIP();
-    return next($ipList[$myIP]);
+
+    if (!empty($myIP)) {
+      return next($ipList[$myIP]);
+    } else {
+      return "";
+    }
   }
 
   public function setMyIP($ip, $name) {
@@ -37,7 +47,12 @@ class IPListHandler {
 
   public function getMyIP() {
     $ipList = $this->fileHandler->deserialize($this->fileName);
-    return $ipList['me']['IP'];
+
+    if (array_key_exists('me', $ipList)) {
+      return $ipList['me']['IP'];
+    } else {
+      return "";
+    }
   }
 
   public function getMyName() {

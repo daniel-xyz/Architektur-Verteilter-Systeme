@@ -26,6 +26,7 @@ class MessageCollector {
         }
       }
     }
+    error_log("No other servers registered.");
   }
 
   private function getExternalLog($server) {
