@@ -14,7 +14,8 @@ if(empty($_REQUEST['initiator'])) {
   error_log("yourNeughbor.php: Iniitiert von " . $initiator);
 }
 
-if(!empty($_REQUEST['initiator']) && $_REQUEST['initiator'] !== $myIP && !empty($_REQUEST['iplist'])) {
+if(!empty($_REQUEST['initiator']) && !empty($_REQUEST['iplist'] && $_REQUEST['initiator'] !== $myIP)) {
+  $initiator = $_REQUEST['initiator'];
   $ipList = $_REQUEST['iplist'];
   $ipListHandler->update($ipList);
 }
