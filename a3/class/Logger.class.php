@@ -4,7 +4,7 @@ require_once('FileHandler.class.php');
 
 class Logger {
 
-  private $fileName = 'persistence/messages.txt';
+  private $fileName = 'messages.txt';
 
   public function log($entry) {
     $fileHandler = new FileHandler();
