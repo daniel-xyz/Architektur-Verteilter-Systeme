@@ -16,8 +16,8 @@ class ServerRestarter {
 
     if (is_array($ipList) && array_key_exists('all', $ipList) && count($ipList['all']) > 0) {
       foreach ($ipList['all'] as $server) {
-        if ($server['IP'] != $this->ipListHandler->getMyIP()) {
-          $this->restart($server['IP']);
+        if ($server['ip'] != $this->ipListHandler->getMyIP()) {
+          $this->restart($server['ip']);
         }
       }
     }

@@ -40,7 +40,7 @@ class IPListHandler {
 
   public function setMyIP($ip, $name) {
     $ipList = $this->fileHandler->deserialize($this->fileName);
-    $ipList['me']['IP'] = $ip;
+    $ipList['me']['ip'] = $ip;
     $ipList['me']['name'] = $name;
     $this->fileHandler->serialize($this->fileName, $ipList);
   }
@@ -49,7 +49,7 @@ class IPListHandler {
     $ipList = $this->fileHandler->deserialize($this->fileName);
 
     if (array_key_exists('me', $ipList)) {
-      return $ipList['me']['IP'];
+      return $ipList['me']['ip'];
     } else {
       return "";
     }

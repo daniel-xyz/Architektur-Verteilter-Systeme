@@ -25,7 +25,7 @@ function addToIpList($name, $ip) {
 
   $ipList[$ip] = array(
     'name' => $name,
-    'IP' => $ip
+    'ip' => $ip
   );
 
   error_log('Server registriert: ' . $ipList[$ip]['name'] . ' ' . $ipList[$ip]['ip']);
@@ -34,7 +34,7 @@ function addToIpList($name, $ip) {
 
   $response = array(
     'name' => $name,
-    'IP' => $ip
+    'ip' => $ip
   );
 
   json_encode($response);

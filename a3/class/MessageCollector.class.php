@@ -19,7 +19,7 @@ class MessageCollector {
       foreach ($this->ipList['all'] as $server) {
         $this->keepCollecting = true;
 
-        if ($server['IP'] != $this->ipListHandler->getMyIP()) {
+        if ($server['ip'] != $this->ipListHandler->getMyIP()) {
           do {
             $this->getExternalLog($server);
           } while ($this->keepCollecting == true);
@@ -30,8 +30,8 @@ class MessageCollector {
   }
 
   private function getExternalLog($server) {
-    error_log("MessageCollector: getExternalLog() for " . $server['IP'] . " ...");
-    $request = new HTTP_Request2('http://' . $server['IP'] . '/Architektur-Verteilter-Systeme/a3/getLoggerHTML.php', HTTP_Request2::METHOD_GET);
+    error_log("MessageCollector: getExternalLog() for " . $server['ip'] . " ...");
+    $request = new HTTP_Request2('http://' . $server['ip'] . '/Architektur-Verteilter-Systeme/a3/getLoggerHTML.php', HTTP_Request2::METHOD_GET);
 
     try {
       $response = $request->send();
@@ -68,7 +68,7 @@ class MessageCollector {
           $this->keepCollecting = false;
         }
       } else {
-        error_log("MessageCollector: No messages found on " . $server['IP'] . ".");
+        error_log("MessageCollector: No messages found on " . $server['ip'] . ".");
         $this->keepCollecting = false;
       }
     } catch (HTTP_Request2_Exception $e) {
