@@ -53,6 +53,6 @@ function triggerNeighborNotifications() {
     $request->setMethod(HTTP_Request2::METHOD_POST);
     $request->send();
   } catch (Exception $exc) {
-    echo $exc->getMessage();
+    error_log($exc->getMessage());
   }
 }

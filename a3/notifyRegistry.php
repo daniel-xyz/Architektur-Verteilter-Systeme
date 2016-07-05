@@ -21,7 +21,7 @@ if(!empty($_REQUEST['name'] && !empty($_REQUEST['ip']))) {
     $response = $request->send();
 
     if (200 == $response->getStatus()) {
-      $body = file_get_contents($response->getBody());
+      $body = $response->getBody();
       $myIP = json_decode($body, true);
 
       error_log("Server meldet mir meine IP: " . $body);
