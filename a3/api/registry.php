@@ -41,7 +41,7 @@ function addToIpList($name, $ip) {
 
   error_log('Registry: Sende neuem Server seine Daten: ' . $yourIP['name'] . ' ' . $yourIP['ip']);
 
-  json_encode($yourIP);
+  echo json_encode($yourIP);
 }
 
 function triggerNeighborNotifications() {
