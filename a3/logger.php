@@ -7,17 +7,17 @@ $fileHandler = new FileHandler();
 
 if(!empty($_REQUEST['message']) && !empty($_REQUEST['timestamp'])) {
   $ipList = $fileHandler->deserialize('iplist.txt');
-  $from = 'default';
+  $sender = 'default';
 
   // Nachricht kommt von einem anderen Server
-  if(!empty($_REQUEST['from'])) {
-    $from = $_REQUEST['from'];
+  if(!empty($_REQUEST['sender'])) {
+    $sender = $_REQUEST['sender'];
   } else if (array_key_exists('me', $ipList)) {
-    $from = $ipList['me']['name'];
+    $sender = $ipList['me']['name'];
   }
 
   $entry = array (
-    'from' => $from,
+    'sender' => $sender,
     'message' => $_REQUEST['message'],
     'timestamp' => $_REQUEST['timestamp']
   );

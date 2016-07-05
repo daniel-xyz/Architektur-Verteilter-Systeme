@@ -38,7 +38,7 @@ function startShowingMessages() {
         '<div class="entry" style="display:none;">' +
         '<p>' +
         response.message.time +
-        ', ' + response.message.from +
+        ', ' + response.message.sender +
         ': ' + response.message.message +
         '</p>' +
         '</div>';

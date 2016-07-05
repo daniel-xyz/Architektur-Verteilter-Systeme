@@ -1,7 +1,6 @@
 <?php
 
 require_once('HTTP/Request2.php');
-require_once('class/FileHandler.class.php');
 require_once('class/IPListHandler.class.php');
 
 $ipListHandler = new IPListHandler();
@@ -40,13 +39,13 @@ if(!$isLoopEnd) {
   if (is_array($ipList) && count($ipList) > 1) {
     $keys = array_keys($ipList);
     $indexOfMyIP = array_search($myIP, array_keys($ipList));
-    error_log("Index meiner IP in der neuen IP-Liste: " . $indexOfMyIP);
+    error_log("yourNeighbor.php: Index meiner IP in der neuen IP-Liste: " . $indexOfMyIP);
 
     if ($indexOfMyIP < (count($ipList) - 1)) {
       $neighbor = $ipList[$keys[$indexOfMyIP + 1]];
 
       if (!empty($neighbor)) {
-        error_log("Mein nächster Nachbar: " . $neighbor['ip']);
+        error_log("yourNeighbor.php: Mein nächster Nachbar: " . $neighbor['ip']);
         $nextIP = $neighbor['ip'];
       }
     } else {
