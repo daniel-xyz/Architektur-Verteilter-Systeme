@@ -30,20 +30,22 @@ class IPListHandler {
   public function getMyNextNeighborsIP() {
     $ipList = $this->getList();
     $myIP = $this->getMyIP();
+    $keys = array_keys($ipList);
 
     if (!empty($myIP)) {
       $indexOfMyIP = array_search($myIP, array_keys($ipList));
       error_log("Index meiner IP: " . $indexOfMyIP);
 
-      $keys = array_keys($ipList);
-      $neighbor = $ipList[$keys[$indexOfMyIP + 1]];
+      if ($indexOfMyIP < count($ipList)) {
+        $neighbor = $ipList[$keys[$indexOfMyIP + 1]];
 
-      if (!empty($neighbor)) {
-        error_log("Mein nächster Nachbar: " . $neighbor['ip']);
-        return $neighbor['ip'];
+        if (!empty($neighbor)) {
+          error_log("Mein nächster Nachbar: " . $neighbor['ip']);
+          return $neighbor['ip'];
+        }
+      } else {
+        return $ipList[$keys[0]];
       }
-    } else {
-      return "";
     }
   }
 

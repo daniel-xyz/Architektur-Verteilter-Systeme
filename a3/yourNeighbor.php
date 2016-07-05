@@ -10,7 +10,8 @@ $myIP = $ipListHandler->getMyIP();
 $initiator = "";
 
 if(!empty($_REQUEST['iplist'])) {
-  $ipListHandler->update($_REQUEST['iplist']);
+  $ipList = $_REQUEST['iplist'];
+  $ipListHandler->update($ipList);
 }
 
 if(empty($_REQUEST['initiator'])) {
