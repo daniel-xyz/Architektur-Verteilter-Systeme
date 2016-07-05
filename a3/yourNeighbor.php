@@ -9,6 +9,7 @@ $myIP = $ipListHandler->getMyIP();
 
 if(empty($_REQUEST['initiator'])) {
   $initiator = $myIP;
+  user_error("yourNeughbor.php: Iniitiert von " . $initiator);
 }
 
 if(empty($_REQUEST['initiator']) || $_REQUEST['initiator'] !== $myIP) {
@@ -20,7 +21,7 @@ if(empty($_REQUEST['initiator']) || $_REQUEST['initiator'] !== $myIP) {
       $request->setMethod(HTTP_Request2::METHOD_POST)
         ->addPostParameter(array('iplist' => $ipList, 'initiator' => $_REQUEST['initiator']));
       $request->send();
-      user_error("yourNeughbor.php von " . $nextIP . " aufgerufen.");
+      user_error("yourNeughbor.php von " . $nextIP . " wurde aufgerufen.");
     } catch (Exception $exc) {
       echo $exc->getMessage();
       user_error("yourNeughbor.php von " . $nextIP . " konnte nicht aufgerufen werden.");
