@@ -22,7 +22,7 @@ if(!empty($_REQUEST['name'] && !empty($_REQUEST['ip']))) {
 
     if (200 == $response->getStatus()) {
       $responseJson = $response->getBody();
-      $responseArray = json_decode($ipListJson, true);
+      $responseArray = json_decode($responseJson, true);
 
       $IPListHandler->setMyIP($responseArray['IP'], $responseArray['name']);
       echo json_encode($response);
