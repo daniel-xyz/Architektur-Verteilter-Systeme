@@ -34,6 +34,8 @@ class IPListHandler {
     if (!empty($myIP)) {
       $indexOfMyIP = array_search($myIP, array_keys($ipList));
 
+      error_log("Index meiner IP: " . $indexOfMyIP);
+
       if (!empty($ipList[$indexOfMyIP + 1])) {
         return $ipList[$indexOfMyIP + 1];
       }
