@@ -9,7 +9,7 @@ $ipListHandler = new IPListHandler();
 $myIP = $ipListHandler->getMyIP();
 $isClientMessage = false;
 $isServerMessage = false;
-$isLoopEnd = false;
+$loopActive = false;
 $sender = 0;
 
 if (!empty($_REQUEST['message']) && !empty($_REQUEST['timestamp'])) {
@@ -20,16 +20,16 @@ if (!empty($_REQUEST['message']) && !empty($_REQUEST['timestamp'])) {
 if (!empty($_REQUEST['sender'])) {
   $isServerMessage = true;
   $sender = $_REQUEST['sender'];
+
+  if ($sender === $myIP) {
+    $loopActive = false;
+  }
 } else {
   $isClientMessage = true;
   $sender = $ipListHandler->getMyName();
 }
 
-if ($sender === $myIP) {
-  $isLoopEnd = true;
-}
-
-if (!$isLoopEnd) {
+if ($loopActive) {
 
   $entry = array (
     'sender' => $sender,

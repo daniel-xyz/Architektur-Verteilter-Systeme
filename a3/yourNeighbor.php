@@ -8,8 +8,7 @@ $ipList = array();
 $myIP = $_SERVER['SERVER_ADDR'];
 $initiator = "";
 $isInitiator = false;
-$isLoopStart = false;
-$isLoopEnd = false;
+$loopActive = false;
 
 if (!empty($_REQUEST['initiator']) && !empty($_REQUEST['iplist'])) {
   $initiator = $_REQUEST['initiator'];
@@ -20,20 +19,18 @@ if (empty($_REQUEST['initiator'])) {
   $ipList = $ipListHandler->getList();
   $initiator = $myIP;
   $isInitiator = true;
-  $isLoopStart = true;
+  $loopActive = true;
   error_log("yourNeughbor.php: Iniitiert von " . $initiator);
-}
-
-if ($initiator === $myIP) {
+} else if ($initiator === $myIP) {
   $isInitiator = true;
-  $isLoopEnd = true;
+  $loopActive = false;
 }
 
 if(!$isInitiator) {
   $ipListHandler->update($ipList);
 }
 
-if(!$isLoopEnd) {
+if($loopActive) {
   $nextIP = "";
 
   if (is_array($ipList) && count($ipList) > 1) {
