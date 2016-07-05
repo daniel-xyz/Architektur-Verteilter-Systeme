@@ -6,7 +6,7 @@ require_once('class/FileHandler.class.php');
 $fileHandler = new FileHandler();
 
 if(!empty($_REQUEST['message']) && !empty($_REQUEST['timestamp'])) {
-  $ipList = $fileHandler->deserialize('persistence/iplist.txt');
+  $ipList = $fileHandler->deserialize('iplist.txt');
   $from = 'default';
 
   // Nachricht kommt von einem anderen Server

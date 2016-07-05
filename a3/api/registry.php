@@ -38,7 +38,6 @@ function addToIpList($name, $ip) {
   );
 
   json_encode($yourIP);
-  triggerNeighborNotifications();
 }
 
 function triggerNeighborNotifications() {
