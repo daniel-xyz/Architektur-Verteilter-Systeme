@@ -21,7 +21,7 @@ if(empty($_REQUEST['initiator']) || $_REQUEST['initiator'] !== $myIP) {
     try {
       $request = new HTTP_Request2('http://' . $nextIP . '/Architektur-Verteilter-Systeme/a3/yourNeighbor.php');
       $request->setMethod(HTTP_Request2::METHOD_POST)
-        ->addPostParameter(array('iplist' => $ipList, 'initiator' => $_REQUEST['initiator']));
+        ->addPostParameter(array('iplist' => $ipList, 'initiator' => $initiator));
       $request->send();
       user_error("yourNeughbor.php von " . $nextIP . " wurde aufgerufen.");
     } catch (Exception $exc) {
