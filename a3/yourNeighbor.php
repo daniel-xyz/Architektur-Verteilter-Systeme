@@ -28,7 +28,7 @@ if(empty($_REQUEST['initiator']) || $_REQUEST['initiator'] !== $myIP) {
     $indexOfMyIP = array_search($_SERVER['SERVER_ADDR'], array_keys($ipList));
     error_log("Index meiner IP in der neuen IP-Liste: " . $indexOfMyIP);
 
-    if ($indexOfMyIP < count($ipList)) {
+    if ($indexOfMyIP < (count($ipList) - 1)) {
       $neighbor = $ipList[$keys[$indexOfMyIP + 1]];
 
       if (!empty($neighbor)) {
