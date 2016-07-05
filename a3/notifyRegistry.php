@@ -20,12 +20,15 @@ if(!empty($_REQUEST['name'] && !empty($_REQUEST['ip']))) {
   try {
     $response = $request->send();
 
-    $responseJson = $response->getBody();
-      $responseArray = json_decode($responseJson, true);
+    if (200 == $response->getStatus()) {
+      $responseJson = $response->getBody();
 
-      error_log("Server meldet mir meine IP: " . $responseArray['ip']);
-      $IPListHandler->setMyIP($responseArray['ip'], $responseArray['name']);
+      error_log("Server meldet mir meine IP: " . $responseJson['ip']);
+      $IPListHandler->setMyIP($responseJson['ip'], $responseJson['name']);
       echo json_encode($response);
+    } else {
+      echo 'Unerwarteter HTTP-Status vom Registry-Server: ' . $response->getStatus() . '. ' . $response->getReasonPhrase() . ' ';
+    }
   } catch (HTTP_Request2_Exception $e) {
     echo 'Fehler: ' . $e->getMessage();
   }
