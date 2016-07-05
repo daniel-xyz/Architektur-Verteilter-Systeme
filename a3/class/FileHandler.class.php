@@ -13,7 +13,7 @@ class FileHandler {
 
     if (flock($file, LOCK_EX)) { // exklusive Sperre
       ftruncate($file, 0); // Datei kürzen
-      fwrite($file, base64_encode(serialize($content)));
+      fwrite($file, serialize($content));
       fflush($file); // leere Ausgabepuffer bevor die Sperre frei gegeben wird
       flock($file, LOCK_UN);
     }
@@ -30,7 +30,7 @@ class FileHandler {
       $fileSize = filesize($this->path . $fileName);
 
       if ($fileSize > 0) {
-        $array = unserialize(base64_decode(fread($file, $fileSize)));
+        $array = unserialize(fread($file, $fileSize));
       }
 
       fflush($file); // leere Ausgabepuffer bevor die Sperre frei gegeben wird
