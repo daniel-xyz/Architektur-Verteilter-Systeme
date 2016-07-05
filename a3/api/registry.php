@@ -28,6 +28,8 @@ function addToIpList($name, $ip) {
     'IP' => $ip
   );
 
+  error_log('Server registriert: ' . $ipList[$ip]['name'] . ' ' . $ipList[$ip]['ip']);
+
   $ipListHandler->update($ipList);
 
   $response = array(
