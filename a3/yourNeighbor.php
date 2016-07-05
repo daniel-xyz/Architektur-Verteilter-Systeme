@@ -1,5 +1,6 @@
 <?php
 
+require_once('HTTP/Request2.php');
 require_once('class/FileHandler.class.php');
 require_once('class/IPListHandler.class.php');
 
@@ -9,7 +10,7 @@ $myIP = $ipListHandler->getMyIP();
 
 if(empty($_REQUEST['initiator'])) {
   $initiator = $myIP;
-  user_error("yourNeughbor.php: Iniitiert von " . $initiator);
+  error_log("yourNeughbor.php: Iniitiert von " . $initiator);
 }
 
 if(empty($_REQUEST['initiator']) || $_REQUEST['initiator'] !== $myIP) {

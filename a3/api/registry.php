@@ -30,7 +30,7 @@ function addToIpList($name, $ip) {
     'ip' => $ip
   );
 
-  error_log('Server registriert: ' . $ipList[$ip]['name'] . ' ' . $ipList[$ip]['ip']);
+  error_log('Server in der Registry registriert: ' . $ipList[$ip]['name'] . ' ' . $ipList[$ip]['ip']);
 
   $ipListHandler->update($ipList);
 
@@ -39,13 +39,13 @@ function addToIpList($name, $ip) {
     'ip' => $ip
   );
 
-  error_log('Registry: Sende neuem Server seine Daten: ' . $yourIP['name'] . ' ' . $yourIP['ip']);
+  error_log('Registry sendet neuem Server seine Daten: ' . $yourIP['name'] . ' ' . $yourIP['ip']);
 
   echo json_encode($yourIP);
 }
 
 function triggerNeighborNotifications() {
-  error_log('Stoße die Neighbor-Notifications an: ' . $_SERVER['SERVER_ADDR']);
+  error_log('Registry stößt die Neighbor-Notifications an: ' . $_SERVER['SERVER_ADDR']);
 
   try {
     $request = new HTTP_Request2('http://' . $_SERVER['SERVER_ADDR'] . '/Architektur-Verteilter-Systeme/a3/yourNeighbor.php');

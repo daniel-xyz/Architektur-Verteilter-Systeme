@@ -19,7 +19,6 @@ class Logger {
     $fileHandler = new FileHandler();
 
     $oldestEntry = array();
-    error_log("Logger getLog(): Start deserializing entries ...");
     $entries = $fileHandler->deserialize($this->fileName);
 
     if (count($entries) > 0) {
