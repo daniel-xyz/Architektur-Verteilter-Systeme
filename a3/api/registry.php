@@ -1,6 +1,8 @@
 <?php
 
-require_once('../class/FileHandler.class.php');
+require_once '../class/IPListHandler.class.php';
+
+$ipListHandler = new IPListHandler();
 
 if (!empty($_REQUEST['name'])) {
   $name = $_REQUEST['name'];
@@ -17,30 +19,36 @@ if (!empty($_REQUEST['name'])) {
 }
 
 function addToIpList($name, $ip) {
-  $fileName = '../persistence/iplist.txt';
-  $fileHandler = new FileHandler();
+  global $ipListHandler;
+  $ipList = $ipListHandler->getList();
 
-  $ipList = $fileHandler->deserialize($fileName);
-
-  if (!is_array($ipList)) {
-    $ipList = array();
-  }
-
-  $ipList['all'][$ip] = array(
+  $ipList[$ip] = array(
     'name' => $name,
     'IP' => $ip
   );
 
-  $fileHandler->serialize($fileName, $ipList);
+  $ipListHandler->update($ipList);
 
-  $ipList['me'] = array(
+  $response = array(
     'name' => $name,
     'IP' => $ip
   );
 
   if (count($ipList) > 0) {
-    echo json_encode($ipList);
+    json_encode($response);
+    triggerNeighborNotifications();
   }
 }
 
-// TODO a new function to notify all servers when a new server was added to the registry
+function triggerNeighborNotifications() {
+  global $ipListHandler;
+  $myIP = $ipListHandler->getMyIP();
+
+  try {
+    $request = new HTTP_Request2('http://' . $myIP . '/Architektur-Verteilter-Systeme/a3/yourNeighbor.php');
+    $request->setMethod(HTTP_Request2::METHOD_POST);
+    $request->send();
+  } catch (Exception $exc) {
+    echo $exc->getMessage();
+  }
+}

@@ -1,22 +1,22 @@
 <?php
 
-require_once('FileHandler.class.php');
+require_once('IPListHandler.class.php');
 require_once 'HTTP/Request2.php';
 
 class ServerRestarter {
 
-  private $fileHandler;
+  private $ipListHandler;
 
   function __construct() {
-    $this->fileHandler = new FileHandler();
+    $this->ipListHandler = new IPListHandler();
   }
 
   public function restartAllServers() {
-    $ipList = $this->fileHandler->deserialize('persistence/iplist.txt');
+    $ipList = $this->ipListHandler->getList();
 
     if (is_array($ipList) && array_key_exists('all', $ipList) && count($ipList['all']) > 0) {
       foreach ($ipList['all'] as $server) {
-        if ($server['IP'] != $ipList['me']['IP']) {
+        if ($server['IP'] != $this->ipListHandler->getMyIP()) {
           $this->restart($server['IP']);
         }
       }

@@ -1,17 +1,17 @@
 <?php
 
 require_once 'HTTP/Request2.php';
-require_once('FileHandler.class.php');
+require_once('IPListHandler.class.php');
 
 class MessageCollector {
 
-  private $fileHandler;
+  private $ipListHandler;
   private $ipList;
   private $keepCollecting = true;
 
   function __construct() {
-    $this->fileHandler = new FileHandler();
-    $this->ipList = $this->fileHandler->deserialize('persistence/iplist.txt');
+    $this->ipListHandler = new IPListHandler();
+    $this->ipList = $this->ipListHandler->getList();;
   }
 
   public function collect() {
@@ -19,7 +19,7 @@ class MessageCollector {
       foreach ($this->ipList['all'] as $server) {
         $this->keepCollecting = true;
 
-        if ($server['IP'] != $this->ipList['me']['IP']) {
+        if ($server['IP'] != $this->ipListHandler->getMyIP()) {
           do {
             $this->getExternalLog($server);
           } while ($this->keepCollecting == true);
@@ -53,7 +53,7 @@ class MessageCollector {
 
         if (!empty($entry['from']) && !empty($entry['message']) && !empty($entry['timestamp'])) {
           try {
-            $request = new HTTP_Request2('http://' . $this->ipList['me']['IP'] . '/Architektur-Verteilter-Systeme/a3/logger.php');
+            $request = new HTTP_Request2('http://' . $this->ipListHandler->getMyIP() . '/Architektur-Verteilter-Systeme/a3/logger.php');
             $request->setMethod(HTTP_Request2::METHOD_POST)
               ->addPostParameter(array('from' => $entry['from'],'message' => $entry['message'], 'timestamp' => $entry['timestamp']));
             $request->send();

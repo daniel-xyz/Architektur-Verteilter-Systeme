@@ -2,7 +2,9 @@
 
 require_once 'HTTP/Request2.php';
 require_once 'class/FileHandler.class.php';
+require_once 'class/IPListHandler.class.php';
 
+$IPListHandler = new IPListHandler();
 $registryServer = '';
 $serverName = '';
 
@@ -19,11 +21,10 @@ if(!empty($_REQUEST['name'] && !empty($_REQUEST['ip']))) {
     $response = $request->send();
 
     if (200 == $response->getStatus()) {
-      $ipListJson = $response->getBody();
-      $ipList = json_decode($ipListJson, true);
+      $responseJson = $response->getBody();
+      $responseArray = json_decode($ipListJson, true);
 
-      $fileHandler = new FileHandler();
-      $fileHandler->serialize('persistence/iplist.txt', $ipList);
+      $IPListHandler->setMyIP($responseArray['IP'], $responseArray['name']);
       echo json_encode($response);
     } else {
       echo 'Unerwarteter HTTP-Status vom Registry-Server: ' . $response->getStatus() . '. ' . $response->getReasonPhrase() . ' ';
