@@ -35,6 +35,8 @@ class IPListHandler {
       $indexOfMyIP = array_search($myIP, array_keys($ipList));
       error_log("Index meiner IP: " . $indexOfMyIP);
 
+      error_log("Mein nächster Nachbar wäre: " . $ipList[$indexOfMyIP + 1]);
+
       if (!empty($ipList[$indexOfMyIP + 1])) {
         error_log("Mein nächster Nachbar: " . $ipList[$indexOfMyIP + 1]);
         return $ipList[$indexOfMyIP + 1];
