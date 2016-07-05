@@ -39,7 +39,7 @@ function addToIpList($name, $ip) {
     'ip' => $ip
   );
 
-  error_log('Registry: Send response to new server: ' . $yourIP['name'] . ' ' . $yourIP['ip']);
+  error_log('Registry: Sende neuem Server seine Daten: ' . $yourIP['name'] . ' ' . $yourIP['ip']);
 
   json_encode($yourIP);
 }
