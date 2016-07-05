@@ -25,7 +25,7 @@ if(empty($_REQUEST['initiator']) || $_REQUEST['initiator'] !== $myIP) {
 
   if (is_array($ipList) && count($ipList) > 1) {
     $keys = array_keys($ipList);
-    $indexOfMyIP = array_search($_REQUEST['SERVER_ADDR'], array_keys($ipList));
+    $indexOfMyIP = array_search($_SERVER['SERVER_ADDR'], array_keys($ipList));
     error_log("Index meiner IP in der neuen IP-Liste: " . $indexOfMyIP);
 
     if ($indexOfMyIP < count($ipList)) {
