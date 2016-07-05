@@ -44,7 +44,7 @@ class IPListHandler {
           return $neighbor['ip'];
         }
       } else {
-        return $ipList[$keys[0]];
+        return $ipList[$keys[0]['ip']];
       }
     }
   }
