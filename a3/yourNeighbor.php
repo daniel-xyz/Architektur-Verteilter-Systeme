@@ -9,7 +9,7 @@ $ipList = $ipListHandler->getList();
 $myIP = $ipListHandler->getMyIP();
 
 if(empty($_REQUEST['initiator'])) {
-  $initiator = $myIP;
+  $initiator = $_SERVER['SERVER_ADDR'];
   error_log("yourNeughbor.php: Iniitiert von " . $initiator);
 }
 

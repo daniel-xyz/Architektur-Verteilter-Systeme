@@ -45,7 +45,7 @@ function addToIpList($name, $ip) {
 }
 
 function triggerNeighborNotifications() {
-  error_log('Registry stößt die Neighbor-Notifications an: ' . $_SERVER['SERVER_ADDR']);
+  error_log('Registry stößt die Neighbors-Notifications an: ' . $_SERVER['SERVER_ADDR']);
 
   try {
     $request = new HTTP_Request2('http://' . $_SERVER['SERVER_ADDR'] . '/Architektur-Verteilter-Systeme/a3/yourNeighbor.php');
