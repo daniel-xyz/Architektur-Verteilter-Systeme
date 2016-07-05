@@ -21,12 +21,12 @@ if(!empty($_REQUEST['name'] && !empty($_REQUEST['ip']))) {
     $response = $request->send();
 
     if (200 == $response->getStatus()) {
-      $body = $response->getBody();
-      $myIP = json_decode($body, true);
+      $responseJson = $response->getBody();
+      $responseArray = json_decode($responseJson, true);
 
-      error_log("Server meldet mir meine IP: " . $body);
+      error_log("Server meldet mir meine IP: " . $responseArray['ip']);
 
-      $IPListHandler->setMyIP($myIP['ip'], $myIP['name']);
+      $IPListHandler->setMyIP($responseArray['ip'], $responseArray['name']);
       echo json_encode($response);
     } else {
       echo 'Unerwarteter HTTP-Status vom Registry-Server: ' . $response->getStatus() . '. ' . $response->getReasonPhrase() . ' ';
