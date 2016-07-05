@@ -36,7 +36,7 @@ if(empty($_REQUEST['initiator']) || $_REQUEST['initiator'] !== $myIP) {
         $nextIP = $neighbor['ip'];
       }
     } else {
-      $nextIP = $ipList[$keys[0]['ip']];
+      $nextIP = $ipList[$keys[0]]['ip'];
     }
 
     try {
