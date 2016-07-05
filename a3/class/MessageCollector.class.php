@@ -1,6 +1,6 @@
 <?php
 
-require_once 'HTTP/Request2.php';
+require_once('HTTP/Request2.php');
 require_once('IPListHandler.class.php');
 
 class MessageCollector {

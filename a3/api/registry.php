@@ -1,6 +1,7 @@
 <?php
 
-require_once '../class/IPListHandler.class.php';
+require_once('HTTP/Request2.php');
+require_once('../class/IPListHandler.class.php');
 
 $ipListHandler = new IPListHandler();
 

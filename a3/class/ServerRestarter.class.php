@@ -1,7 +1,7 @@
 <?php
 
 require_once('IPListHandler.class.php');
-require_once 'HTTP/Request2.php';
+require_once('HTTP/Request2.php');
 
 class ServerRestarter {
 
