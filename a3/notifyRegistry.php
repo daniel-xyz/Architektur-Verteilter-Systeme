@@ -24,7 +24,7 @@ if(!empty($_REQUEST['name'] && !empty($_REQUEST['ip']))) {
       $body = $response->getBody();
       $myIP = json_decode($body, true);
 
-      error_log("Server meldet mir meine IP: " . print_r($body));
+      error_log("Server meldet mir meine IP: " . $body);
 
       $IPListHandler->setMyIP($myIP['ip'], $myIP['name']);
       echo json_encode($response);
