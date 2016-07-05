@@ -35,10 +35,8 @@ function addToIpList($name, $ip) {
     'IP' => $ip
   );
 
-  if (count($ipList) > 0) {
-    json_encode($response);
-    triggerNeighborNotifications();
-  }
+  json_encode($response);
+  triggerNeighborNotifications();
 }
 
 function triggerNeighborNotifications() {
