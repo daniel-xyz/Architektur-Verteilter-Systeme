@@ -32,7 +32,11 @@ class IPListHandler {
     $myIP = $this->getMyIP();
 
     if (!empty($myIP)) {
-      return next($ipList[$myIP]);
+      $indexOfMyIP = array_search($myIP, array_keys($ipList));
+
+      if (!empty($ipList[$indexOfMyIP + 1])) {
+        return $ipList[$indexOfMyIP + 1];
+      }
     } else {
       return "";
     }
