@@ -26,7 +26,7 @@ if(!empty($_REQUEST['name'] && !empty($_REQUEST['ip']))) {
 
       error_log("Server meldet mir meine IP: " . $responseArray['ip']);
 
-      $IPListHandler->setMyIP($responseArray['ip'], $responseArray['name']);
+      $IPListHandler->setMyIP($responseArray['ip'], $responseArray['name']); // TODO Systemnachricht darf erst rausgehen, wenn Server seine IP eingetragen hat.
       echo json_encode($response);
     } else {
       echo 'Unerwarteter HTTP-Status vom Registry-Server: ' . $response->getStatus() . '. ' . $response->getReasonPhrase() . ' ';

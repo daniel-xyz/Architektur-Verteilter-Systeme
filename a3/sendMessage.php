@@ -7,7 +7,7 @@ require_once('class/IPListHandler.class.php');
 
 $fileHandler = new FileHandler();
 $ipListHandler = new IPListHandler();
-$myIP = $ipListHandler->getMyIP();
+$myIP = $_SERVER['SERVER_ADDR'];
 $isSystemMessage = false;
 $isClientMessage = false;
 $isServerMessage = false;
@@ -29,6 +29,7 @@ if (!empty($_REQUEST['sender'])) {
     $loopActive = true;
   }
 } else {
+  $myIP = $ipListHandler->getMyIP();
   $isClientMessage = true;
   $loopActive = true;
   $sender = $myIP;
@@ -41,7 +42,7 @@ if (!empty($_REQUEST['system'])) {
 if ($loopActive) {
   $nextIP = $ipListHandler->getMyNextNeighborsIP();
 
-  error_log("sendMessage next " . $nextIP . ' from my ip ' . $myIP); // todo ip nicht remote
+  error_log("sendMessage next " . $nextIP . ' from my ip ' . $myIP);
 
   if ($nextIP !== $myIP) {
 
