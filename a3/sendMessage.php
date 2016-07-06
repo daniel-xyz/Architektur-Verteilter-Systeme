@@ -13,6 +13,7 @@ $isClientMessage = false;
 $isServerMessage = false;
 $loopActive = false;
 $sender = 0;
+$displayedSender = $sender;
 
 if (!empty($_REQUEST['message']) && !empty($_REQUEST['timestamp'])) {
   $message = $_REQUEST['message'];
@@ -37,6 +38,9 @@ if (!empty($_REQUEST['sender'])) {
 
 if (!empty($_REQUEST['system'])) {
   $isSystemMessage = true;
+  $displayedSender = "System";
+} else {
+  $displayedSender = $ipListHandler->getNameForIP($sender);
 }
 
 if ($loopActive) {
@@ -47,7 +51,7 @@ if ($loopActive) {
   if ($nextIP !== $myIP) {
 
     $entry = array (
-      'sender' => $ipListHandler->getNameForIP($sender),
+      'sender' => $displayedSender,
       'message' => $_REQUEST['message'],
       'timestamp' => $_REQUEST['timestamp']
     );
