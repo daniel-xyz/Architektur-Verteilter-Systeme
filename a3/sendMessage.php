@@ -24,6 +24,8 @@ if (!empty($_REQUEST['sender'])) {
 
   if ($sender === $myIP) {
     $loopActive = false;
+  } else {
+    $loopActive = true;
   }
 } else {
   $isClientMessage = true;
