@@ -24,6 +24,8 @@ if (empty($_REQUEST['initiator'])) {
 } else if ($initiator === $myIP) {
   $isInitiator = true;
   $loopActive = false;
+} else {
+  $loopActive = true;
 }
 
 if(!$isInitiator) {

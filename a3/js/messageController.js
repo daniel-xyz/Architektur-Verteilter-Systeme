@@ -8,7 +8,7 @@ function sendMessage() {
 
   resetStatusMessages();
 
-  $.get("logger.php", {
+  $.get("sendMessage.php", {
     message: message,
     timestamp: timestamp
   })
