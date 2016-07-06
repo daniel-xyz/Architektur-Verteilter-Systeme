@@ -9,6 +9,7 @@ if(!empty($_REQUEST['name'] && !empty($_REQUEST['ip']))) {
 }
 
 if(!empty($_REQUEST['yourip'] && !empty($_REQUEST['yourname']))) {
+  error_log('Antwort der Registry: ' . $_REQUEST['yourname'] . ' ' . $_REQUEST['yourip']);
   processRegistryAnswer($_REQUEST['yourip'], $_REQUEST['yourname']);
   var_dump(http_response_code(200));
 }
