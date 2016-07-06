@@ -33,15 +33,6 @@ function addToIpList($name, $ip) {
   error_log('Server in der Registry registriert: ' . $ipList[$ip]['name'] . ' ' . $ipList[$ip]['ip']);
 
   $ipListHandler->update($ipList);
-
-//  $yourIP = array(
-//    'name' => $name,
-//    'ip' => $ip
-//  );
-//
-//  error_log('Registry sendet neuem Server seine Daten: ' . $yourIP['name'] . ' ' . $yourIP['ip']);
-//
-//  echo json_encode($yourIP);
 }
 
 function sendInformationToNewServer($name, $ip) {
