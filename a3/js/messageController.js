@@ -47,8 +47,8 @@ function startShowingMessages() {
       messageCounter ++;
     }, "json")
       .fail(function() {
-        stopShowingMessages();
-        error('Es konnten keine Nachrichten gefunden werden.');
+        // stopShowingMessages();
+        // error('Es konnten keine Nachrichten gefunden werden.');
       });
   }, 1000);
 }
