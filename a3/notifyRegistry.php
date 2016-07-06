@@ -4,34 +4,27 @@ require_once('HTTP/Request2.php');
 require_once('class/FileHandler.class.php');
 require_once('class/IPListHandler.class.php');
 
-$IPListHandler = new IPListHandler();
-$registryServer = '';
-$serverName = '';
-
 if(!empty($_REQUEST['name'] && !empty($_REQUEST['ip']))) {
-  $serverName = $_REQUEST['name'];
-  $registryServer = $_REQUEST['ip'];
+  notifyRegistry($_REQUEST['ip'], $_REQUEST['name']);
+}
 
-  $request = new HTTP_Request2('http://' . $registryServer . '/Architektur-Verteilter-Systeme/a3/api/registry.php', HTTP_Request2::METHOD_GET);
+if(!empty($_REQUEST['yourip'] && !empty($_REQUEST['yourname']))) {
+  processRegistryAnswer($_REQUEST['yourip'], $_REQUEST['yourname']);
+  var_dump(http_response_code(200));
+}
 
-  $url = $request->getUrl();
-  $url->setQueryVariable('name', $serverName);
-
+function notifyRegistry($registryServer, $serverName) {
   try {
-    $response = $request->send();
-
-    if (200 == $response->getStatus()) {
-      $responseJson = $response->getBody();
-      $responseArray = json_decode($responseJson, true);
-
-      error_log("Server meldet mir meine IP: " . $responseArray['ip']);
-
-      $IPListHandler->setMyIP($responseArray['ip'], $responseArray['name']); // TODO Systemnachricht darf erst rausgehen, wenn Server seine IP eingetragen hat.
-      echo json_encode($response);
-    } else {
-      echo 'Unerwarteter HTTP-Status vom Registry-Server: ' . $response->getStatus() . '. ' . $response->getReasonPhrase() . ' ';
-    }
-  } catch (HTTP_Request2_Exception $e) {
-    echo 'Fehler: ' . $e->getMessage();
+    $request = new HTTP_Request2('http://' . $registryServer . '/Architektur-Verteilter-Systeme/a3/api/registry.php');
+    $request->setMethod(HTTP_Request2::METHOD_POST)
+      ->addPostParameter(array('name' => $serverName));
+    $request->send();
+  } catch (Exception $exc) {
+    error_log($exc->getMessage());
   }
+}
+
+function processRegistryAnswer($ip, $name) {
+  $IPListHandler = new IPListHandler();
+  $IPListHandler->setMyIP($ip, $name);
 }

@@ -11,11 +11,11 @@ if (!empty($_REQUEST['name'])) {
   if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
     $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
     addToIpList($name, $ip);
-    triggerNeighborNotifications();
+    sendInformationToNewServer($name, $ip);
 } elseif(!empty($_SERVER['REMOTE_ADDR'])) {
     $ip = $_SERVER['REMOTE_ADDR'];
     addToIpList($name, $ip);
-    triggerNeighborNotifications();
+    sendInformationToNewServer($name, $ip);
   } else {
     user_error("IP konnte nicht ermittelt werden.");
   }
@@ -34,14 +34,34 @@ function addToIpList($name, $ip) {
 
   $ipListHandler->update($ipList);
 
-  $yourIP = array(
-    'name' => $name,
-    'ip' => $ip
-  );
+//  $yourIP = array(
+//    'name' => $name,
+//    'ip' => $ip
+//  );
+//
+//  error_log('Registry sendet neuem Server seine Daten: ' . $yourIP['name'] . ' ' . $yourIP['ip']);
+//
+//  echo json_encode($yourIP);
+}
 
-  error_log('Registry sendet neuem Server seine Daten: ' . $yourIP['name'] . ' ' . $yourIP['ip']);
+function sendInformationToNewServer($name, $ip) {
+  $request = new HTTP_Request2('http://' . $ip . '/Architektur-Verteilter-Systeme/a3/notifyRegistry.php', HTTP_Request2::METHOD_GET);
 
-  echo json_encode($yourIP);
+  $url = $request->getUrl();
+  $url->setQueryVariable('yourname', $name);
+  $url->setQueryVariable('yourip', $ip);
+
+  try {
+    $response = $request->send();
+
+    if (200 == $response->getStatus()) {
+      triggerNeighborNotifications();
+    } else {
+      echo 'Unerwarteter HTTP-Status vom Registry-Server: ' . $response->getStatus() . '. ' . $response->getReasonPhrase() . ' ';
+    }
+  } catch (HTTP_Request2_Exception $e) {
+    error_log($e->getMessage());
+  }
 }
 
 function triggerNeighborNotifications() {

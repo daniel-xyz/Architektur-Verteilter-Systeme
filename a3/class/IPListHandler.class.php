@@ -33,7 +33,7 @@ class IPListHandler {
     $keys = array_keys($ipList);
 
     $indexOfMyIP = array_search($myIP, array_keys($ipList));
-    error_log("Index meiner IP: " . $indexOfMyIP);
+    error_log("Index meiner IP: " . $indexOfMyIP); // TODO Server wusste sie nicht
 
     if ($indexOfMyIP < (count($ipList) - 1)) {
       $neighbor = $ipList[$keys[$indexOfMyIP + 1]];
