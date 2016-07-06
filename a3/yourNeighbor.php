@@ -31,23 +31,9 @@ if(!$isInitiator) {
 }
 
 if($loopActive) {
-  $nextIP = "";
+  $nextIP = $ipListHandler->getMyNextNeighborsIPFromTemporaryList($ipList, $myIP);
 
-  if (is_array($ipList) && count($ipList) > 1) {
-    $keys = array_keys($ipList);
-    $indexOfMyIP = array_search($myIP, array_keys($ipList));
-    error_log("yourNeighbor.php: Index meiner IP in der neuen IP-Liste: " . $indexOfMyIP);
-
-    if ($indexOfMyIP < (count($ipList) - 1)) {
-      $neighbor = $ipList[$keys[$indexOfMyIP + 1]];
-
-      if (!empty($neighbor)) {
-        error_log("yourNeighbor.php: Mein nächster Nachbar: " . $neighbor['ip']);
-        $nextIP = $neighbor['ip'];
-      }
-    } else {
-      $nextIP = $ipList[$keys[0]]['ip'];
-    }
+  if ($nextIP !== $myIP) {
 
     try {
       $request = new HTTP_Request2('http://' . $nextIP . '/Architektur-Verteilter-Systeme/a3/yourNeighbor.php');

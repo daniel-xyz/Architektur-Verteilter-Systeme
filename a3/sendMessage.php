@@ -30,34 +30,18 @@ if (!empty($_REQUEST['sender'])) {
 }
 
 if ($loopActive) {
+  $nextIP = $ipListHandler->getMyNextNeighborsIP();
 
-  $entry = array (
-    'sender' => $sender,
-    'message' => $_REQUEST['message'],
-    'timestamp' => $_REQUEST['timestamp']
-  );
+  if ($nextIP !== $myIP) {
 
-  $logger = new Logger();
-  $logger->log($entry);
+    $entry = array (
+      'sender' => $sender,
+      'message' => $_REQUEST['message'],
+      'timestamp' => $_REQUEST['timestamp']
+    );
 
-  $ipList = $ipListHandler->getList();
-  $nextIP = "";
-
-  if (is_array($ipList) && count($ipList) > 1) {
-    $keys = array_keys($ipList);
-    $indexOfMyIP = array_search($myIP, array_keys($ipList));
-    error_log("sendMessage.php: Index meiner IP in der neuen IP-Liste: " . $indexOfMyIP);
-
-    if ($indexOfMyIP < (count($ipList) - 1)) {
-      $neighbor = $ipList[$keys[$indexOfMyIP + 1]];
-
-      if (!empty($neighbor)) {
-        error_log("sendMessage.php: Mein nächster Nachbar: " . $neighbor['ip']);
-        $nextIP = $neighbor['ip'];
-      }
-    } else {
-      $nextIP = $ipList[$keys[0]]['ip'];
-    }
+    $logger = new Logger();
+    $logger->log($entry);
 
     try {
       $request = new HTTP_Request2('http://' . $nextIP . '/Architektur-Verteilter-Systeme/a3/sendMessage.php');

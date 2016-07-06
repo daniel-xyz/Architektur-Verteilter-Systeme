@@ -32,21 +32,34 @@ class IPListHandler {
     $myIP = $this->getMyIP();
     $keys = array_keys($ipList);
 
-    if (!empty($myIP)) {
-      $indexOfMyIP = array_search($myIP, array_keys($ipList));
-      error_log("Index meiner IP: " . $indexOfMyIP);
+    $indexOfMyIP = array_search($myIP, array_keys($ipList));
+    error_log("Index meiner IP: " . $indexOfMyIP);
 
-      if ($indexOfMyIP < count($ipList)) {
-        $neighbor = $ipList[$keys[$indexOfMyIP + 1]];
-
-        if (!empty($neighbor)) {
-          error_log("Mein nächster Nachbar: " . $neighbor['ip']);
-          return $neighbor['ip'];
-        }
-      } else {
-        return $ipList[$keys[0]]['ip'];
-      }
+    if ($indexOfMyIP < (count($ipList) - 1)) {
+      $neighbor = $ipList[$keys[$indexOfMyIP + 1]];
+      $next = $neighbor['ip'];
+      error_log("Mein nächster Nachbar: " . $neighbor['ip']);
+    } else {
+      $next = $ipList[$keys[0]]['ip'];
     }
+
+    return $next;
+  }
+
+  public function getMyNextNeighborsIPFromTemporaryList($ipList, $myIP) {
+    $keys = array_keys($ipList);
+    $indexOfMyIP = array_search($myIP, array_keys($ipList));
+    error_log("yourNeighbor.php: Index meiner IP in der neuen IP-Liste: " . $indexOfMyIP);
+
+    if ($indexOfMyIP < (count($ipList) - 1)) {
+      $neighbor = $ipList[$keys[$indexOfMyIP + 1]];
+      $next = $neighbor['ip'];
+      error_log("yourNeighbor.php: Mein nächster Nachbar: " . $neighbor['ip']);
+    } else {
+      $next = $ipList[$keys[0]]['ip'];
+    }
+
+    return $next;
   }
 
   public function setMyIP($ip, $name) {
