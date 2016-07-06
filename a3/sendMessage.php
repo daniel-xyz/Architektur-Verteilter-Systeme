@@ -29,7 +29,7 @@ if (!empty($_REQUEST['sender'])) {
   }
 } else {
   $isClientMessage = true;
-  $sender = $ipListHandler->getMyName();
+  $sender = $myIP;
 }
 
 if (!empty($_REQUEST['system'])) {
