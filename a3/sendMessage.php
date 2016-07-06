@@ -6,7 +6,7 @@ require_once('class/IPListHandler.class.php');
 
 $fileHandler = new FileHandler();
 $ipListHandler = new IPListHandler();
-$myIP = $ipListHandler->getMyIP();
+$myIP = $_SERVER['SERVER_ADDR'];
 $isSystemMessage = false;
 $isClientMessage = false;
 $isServerMessage = false;
