@@ -26,7 +26,7 @@ function startShowingMessages() {
         resetStatusMessages();
 
       if(response.more === 0) {
-        stopShowingMessages();
+        // stopShowingMessages();
       }
 
       if(messageCounter > 5) {
