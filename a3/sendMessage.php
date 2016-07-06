@@ -29,6 +29,7 @@ if (!empty($_REQUEST['sender'])) {
   }
 } else {
   $isClientMessage = true;
+  $loopActive = true;
   $sender = $myIP;
 }
 
