@@ -43,6 +43,8 @@ if ($loopActive) {
 
   if ($nextIP !== $myIP) {
 
+    error_log("sendMessage next " . $nextIP . ' from my ip ' . $myIP);
+
     $entry = array (
       'sender' => $sender,
       'message' => $_REQUEST['message'],
