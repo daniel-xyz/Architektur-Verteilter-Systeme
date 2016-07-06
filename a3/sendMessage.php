@@ -37,8 +37,10 @@ if (!empty($_REQUEST['sender'])) {
 }
 
 if (!empty($_REQUEST['system'])) {
-  $isSystemMessage = true;
-  $displayedSender = "System";
+  if ($_REQUEST['system'] === true) {
+    $isSystemMessage = true;
+    $displayedSender = "System";
+  }
 } else {
   $displayedSender = $ipListHandler->getNameForIP($sender);
 }
@@ -64,7 +66,7 @@ if ($loopActive) {
     try {
       $request = new HTTP_Request2('http://' . $nextIP . '/Architektur-Verteilter-Systeme/a3/sendMessage.php');
       $request->setMethod(HTTP_Request2::METHOD_POST)
-        ->addPostParameter(array('message' => $_REQUEST['message'], 'timestamp' => $_REQUEST['timestamp'], 'sender' => $sender));
+        ->addPostParameter(array('message' => $_REQUEST['message'], 'timestamp' => $_REQUEST['timestamp'], 'sender' => $sender, 'system' => $isSystemMessage));
       $request->send();
       error_log("sendMessage.php: von " . $nextIP . " wurde aufgerufen.");
     } catch (Exception $exc) {
