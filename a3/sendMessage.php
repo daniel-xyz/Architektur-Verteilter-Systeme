@@ -47,7 +47,7 @@ if ($loopActive) {
   if ($nextIP !== $myIP) {
 
     $entry = array (
-      'sender' => $sender,
+      'sender' => $ipListHandler->getNameForIP($sender),
       'message' => $_REQUEST['message'],
       'timestamp' => $_REQUEST['timestamp']
     );

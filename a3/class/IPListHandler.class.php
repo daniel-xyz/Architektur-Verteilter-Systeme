@@ -83,4 +83,9 @@ class IPListHandler {
     $ipList = $this->fileHandler->deserialize($this->fileName);
     return $ipList['me']['name'];
   }
+
+  public function getNameForIP($ip) {
+    $ipList = $this->fileHandler->deserialize($this->fileName);
+    return $ipList['all'][$ip]['name'];
+  }
 }
