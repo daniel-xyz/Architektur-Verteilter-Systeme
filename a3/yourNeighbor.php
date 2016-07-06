@@ -48,4 +48,15 @@ if($loopActive) {
   }
 } else {
   error_log("yourNeighbor.php wurde fertig ausgeführt!");
+
+  try {
+    $request = new HTTP_Request2('http://' . $myIP . '/Architektur-Verteilter-Systeme/a3/sendMessage.php');
+    $request->setMethod(HTTP_Request2::METHOD_POST)
+      ->addPostParameter(array('message' => 'Neuer Server wurde erfolgreich angemeldet!' , 'timestamp' => time(), 'system' => true));
+    $request->send();
+    error_log("yourNeighbor.php: $myIP versendet Systemnachricht.");
+  } catch (Exception $exc) {
+    echo $exc->getMessage();
+    error_log("yourNeighbor.php: $myIP konnte Systemnachricht nicht versenden.");
+  }
 }

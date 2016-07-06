@@ -70,4 +70,4 @@ function clearMessages() {
   msg('Alle Nachrichten wurden erfolgreich gelöscht.');
 }
 
-//window.onload = startShowingMessages;
+window.onload = startShowingMessages;

@@ -7,6 +7,7 @@ require_once('class/IPListHandler.class.php');
 $fileHandler = new FileHandler();
 $ipListHandler = new IPListHandler();
 $myIP = $ipListHandler->getMyIP();
+$isSystemMessage = false;
 $isClientMessage = false;
 $isServerMessage = false;
 $loopActive = false;
@@ -29,6 +30,10 @@ if (!empty($_REQUEST['sender'])) {
   $sender = $ipListHandler->getMyName();
 }
 
+if (!empty($_REQUEST['system'])) {
+  $isSystemMessage = true;
+}
+
 if ($loopActive) {
   $nextIP = $ipListHandler->getMyNextNeighborsIP();
 
@@ -40,8 +45,10 @@ if ($loopActive) {
       'timestamp' => $_REQUEST['timestamp']
     );
 
-    $logger = new Logger();
-    $logger->log($entry);
+    if ($isSystemMessage || $sender !== $myIP) {
+      $logger = new Logger();
+      $logger->log($entry);
+    }
 
     try {
       $request = new HTTP_Request2('http://' . $nextIP . '/Architektur-Verteilter-Systeme/a3/sendMessage.php');
