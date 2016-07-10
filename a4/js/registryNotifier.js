@@ -12,7 +12,7 @@ function notifyRegistry() {
       name: serverName,
       registryip: registry
     }
-  } else if ((newIP !== "") && && (serverName !== "")) {
+  } else if ((newIP !== "") && (serverName !== "")) {
     params = {
       name: serverName,
       newip: newIP
