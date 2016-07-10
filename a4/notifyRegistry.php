@@ -31,7 +31,7 @@ function notifyExternalRegistry($registryServer, $serverName) {
 
 function notifyInternalRegistry($newIP, $serverName) {
   try {
-    $request = new HTTP_Request2('http://' . $_SERVER['SERVER_ADDR'] . '/Architektur-Verteilter-Systeme/a4/api/registry.php');
+    $request = new HTTP_Request2('http://' . 'localhost' . '/Architektur-Verteilter-Systeme/a4/api/registry.php');
     $request->setMethod(HTTP_Request2::METHOD_POST)
       ->addPostParameter(array('newip' => $newIP, 'name' => $serverName));
     $request->send();
