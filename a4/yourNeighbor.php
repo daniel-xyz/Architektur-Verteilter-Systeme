@@ -17,7 +17,7 @@ if (!empty($_REQUEST['initiator']) && !empty($_REQUEST['iplist'])) {
 
 if (empty($_REQUEST['initiator'])) {
   $ipList = $ipListHandler->getList();
-  $initiator = $myIP;
+  $initiator = $ipListHandler->getMyIP();
   $isInitiator = true;
   $loopActive = true;
   error_log("yourNeughbor.php: Iniitiert von " . $initiator);
