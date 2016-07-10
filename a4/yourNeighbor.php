@@ -20,7 +20,6 @@ if (empty($_REQUEST['initiator'])) {
   $initiator = $myIP;
   $isInitiator = true;
   $loopActive = true;
-  error_log("yourNeughbor.php: Iniitiert von " . $initiator);
 } else if ($initiator === $myIP) {
   $isInitiator = true;
   $loopActive = false;
@@ -41,10 +40,8 @@ if($loopActive) {
       $request->setMethod(HTTP_Request2::METHOD_POST)
         ->addPostParameter(array('iplist' => $ipList, 'initiator' => $initiator));
       $request->send();
-      error_log("yourNeughbor.php von " . $nextIP . " wurde aufgerufen.");
     } catch (Exception $exc) {
       echo $exc->getMessage();
-      error_log("yourNeughbor.php von " . $nextIP . " konnte nicht aufgerufen werden.");
     }
   }
 } else {
@@ -55,7 +52,6 @@ if($loopActive) {
     $request->setMethod(HTTP_Request2::METHOD_POST)
       ->addPostParameter(array('message' => 'Die Anzahl der Teilnehmer hat sich verändert!' , 'timestamp' => time(), 'system' => 'true'));
     $request->send();
-    error_log("yourNeighbor.php: $myIP versendet Systemnachricht.");
   } catch (Exception $exc) {
     echo $exc->getMessage();
     error_log("yourNeighbor.php: $myIP konnte Systemnachricht nicht versenden.");

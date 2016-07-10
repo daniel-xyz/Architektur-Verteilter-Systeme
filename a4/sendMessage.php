@@ -46,11 +46,9 @@ if (isset($_REQUEST['system']) && $_REQUEST['system'] === 'true') {
 if ($loopActive) {
   $nextIP = $ipListHandler->getMyNextNeighborsIP();
 
-  error_log("sendMessage next " . $nextIP . ' from my ip ' . $myIP);
-
   if ($nextIP !== $myIP) {
 
-    $entry = array (
+    $entry = array(
       'sender' => $displayedSender,
       'message' => $_REQUEST['message'],
       'timestamp' => $_REQUEST['timestamp']
@@ -64,12 +62,9 @@ if ($loopActive) {
       $request->setMethod(HTTP_Request2::METHOD_POST)
         ->addPostParameter(array('message' => $_REQUEST['message'], 'timestamp' => $_REQUEST['timestamp'], 'sender' => $sender, 'system' => $isSystemMessage ? 'true' : 'false'));
       $request->send();
-      error_log("sendMessage.php: von " . $nextIP . " wurde aufgerufen.");
     } catch (Exception $exc) {
       echo $exc->getMessage();
       error_log("sendMessage.php: " . $nextIP . " konnte nicht aufgerufen werden.");
     }
   }
-} else {
-  error_log("sendMessage.php: wurde fertig ausgeführt!");
 }
