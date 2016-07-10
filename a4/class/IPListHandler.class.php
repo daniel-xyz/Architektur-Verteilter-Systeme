@@ -47,6 +47,7 @@ class IPListHandler {
   }
 
   public function getMyNextNeighborsIPFromTemporaryList($ipList, $myIP) {
+    error_log("yourNeighbor.php: Berechne Array-Index meiner IP: " . $myIP);
     $keys = array_keys($ipList);
     $indexOfMyIP = array_search($myIP, array_keys($ipList));
     error_log("yourNeighbor.php: Index meiner IP in der neuen IP-Liste: " . $indexOfMyIP);

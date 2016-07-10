@@ -5,7 +5,7 @@ require_once('class/IPListHandler.class.php');
 
 $ipListHandler = new IPListHandler();
 $ipList = array();
-$myIP = $_SERVER['SERVER_ADDR'];
+$myIP = $ipListHandler->getMyIP();
 $initiator = "";
 $isInitiator = false;
 $loopActive = false;
@@ -17,7 +17,7 @@ if (!empty($_REQUEST['initiator']) && !empty($_REQUEST['iplist'])) {
 
 if (empty($_REQUEST['initiator'])) {
   $ipList = $ipListHandler->getList();
-  $initiator = $ipListHandler->getMyIP();
+  $initiator = $myIP;
   $isInitiator = true;
   $loopActive = true;
   error_log("yourNeughbor.php: Iniitiert von " . $initiator);

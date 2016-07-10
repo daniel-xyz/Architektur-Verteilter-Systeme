@@ -30,6 +30,7 @@ function notifyExternalRegistry($registryServer, $serverName) {
 }
 
 function notifyInternalRegistry($newIP, $serverName) {
+  error_log("Sende meiner lokalen Registry folgenden Server: " . $serverName . $newIP);
   try {
     $request = new HTTP_Request2('http://' . 'localhost' . '/Architektur-Verteilter-Systeme/a4/api/registry.php');
     $request->setMethod(HTTP_Request2::METHOD_POST)
