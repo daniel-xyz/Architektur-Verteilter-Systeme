@@ -15,12 +15,16 @@
       <span class="links"><a href="registerServer.html">Diesen Server registrieren</a></span>
     </div>
     <div class="button-container">
-      <input type="button" onclick="sendMessage()" value="Nachricht erzeugen"/>
       <input type="button" onclick="startShowingMessages()" value="Nachrichten anzeigen"/>
       <input type="button" onclick="stopShowingMessages()" value="Nachrichten stoppen"/>
       <input type="button" onclick="restart()" value="Reset"/>
     </div>
     <div class="message-container"></div>
+    <div class="input-container">
+      <form>
+        Neue Nachricht: <input type="text" name="new-message"> <input type="submit" onclick="sendMessage()" value="Absenden">
+      </form>
+    </div>
   </div>
 </body>
 </html>

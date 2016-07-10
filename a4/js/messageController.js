@@ -2,7 +2,7 @@ var loadMessages,
     messageCounter = 0;
 
 function sendMessage() {
-  var message = "Ich habe eine lange Reise von Requests hinter mir!";
+  var message = $("input[name=new-message]").val();
   var timestamp = Math.floor(Date.now() / 1000);
 
 

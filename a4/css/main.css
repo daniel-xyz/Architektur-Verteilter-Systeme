@@ -48,6 +48,10 @@ a {
 
 }
 
+.input-container form {
+  margin-top: 300px;
+}
+
 .error {
   color: #ed5a26;
 }
