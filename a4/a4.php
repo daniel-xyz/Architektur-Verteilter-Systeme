@@ -12,8 +12,6 @@
   <div class="main-container">
     <div class="top-container">
       <span class="status"></span>
-      <span class="links"><a href="registerServer.html">Diesen Server anmelden</a></span>
-      <span class="links"><a href="registerOtherServer.html">Einen anderen Server anmelden</a></span>
     </div>
     <div class="button-container">
       <input type="button" onclick="startShowingMessages()" value="Nachrichten anzeigen"/>
@@ -25,6 +23,11 @@
       <form>
         Neue Nachricht: <input type="text" name="new-message"> <input type="button" onclick="sendMessage()" value="Absenden">
       </form>
+    </div>
+    <div class="links-container">
+      <div class="links"><a href="registerServer.html">Diesen Server anmelden</a></div>
+      <div class="links"><a href="registerOtherServer.html">Einen anderen Server anmelden</a></div>
+      <div class="links"><a href="registerOtherServer.html">Einen anderen Server rauswerfen</a></div>
     </div>
   </div>
 </body>

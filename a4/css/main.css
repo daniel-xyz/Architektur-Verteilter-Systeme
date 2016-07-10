@@ -52,6 +52,10 @@ a {
   margin-top: 50px;
 }
 
+.links-container {
+  margin-top: 20px;
+}
+
 .error {
   color: #ed5a26;
 }
