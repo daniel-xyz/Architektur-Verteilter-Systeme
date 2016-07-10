@@ -89,4 +89,8 @@ class IPListHandler {
     $ipList = $this->fileHandler->deserialize($this->fileName);
     return $ipList['all'][$ip]['name'];
   }
+
+  public function resetList() {
+    $this->fileHandler->emptyFile($this->fileName);
+  }
 }

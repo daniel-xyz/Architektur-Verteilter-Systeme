@@ -13,8 +13,8 @@ try {
   $request->setMethod(HTTP_Request2::METHOD_POST)
     ->addPostParameter(array('kickip' => $myIP));
   $request->send();
+  $IPListHandler->resetList();
+  var_dump(http_response_code(200));
 } catch (Exception $exc) {
   error_log($exc->getMessage());
 }
-
-var_dump(http_response_code(200));

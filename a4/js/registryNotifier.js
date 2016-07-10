@@ -40,9 +40,6 @@ function notifyRegistry() {
     $.get('http://' + kickIP + '/Architektur-Verteilter-Systeme/a4/kickOut.php', params)
       .success(function() {
         msg('Server wurde erfolgreich gekickt. Viel Spaß!');
-      })
-      .fail(function() {
-        error('Es ist leider etwas schief gelaufen.');
       });
   }
 }
