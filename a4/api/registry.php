@@ -9,6 +9,10 @@ if (!empty($_REQUEST['name'])) {
   $name = $_REQUEST['name'];
 }
 
+if (!empty($_REQUEST['kickip'])) {
+  removeFromIpList($_REQUEST['kickip']);
+}
+
 if(!empty($_REQUEST['newip'])) {
   $ip = $_REQUEST['newip'];
 } else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -35,7 +39,6 @@ function sendInformationToNewServer($name, $ip) {
 
     if (200 == $response->getStatus()) {
       addToIpList($name, $ip);
-      triggerNeighborNotifications();
     } else {
       echo 'Unerwarteter HTTP-Status vom Registry-Server: ' . $response->getStatus() . '. ' . $response->getReasonPhrase() . ' ';
     }
@@ -56,6 +59,19 @@ function addToIpList($name, $ip) {
   error_log('Server in der Registry registriert: ' . $ipList[$ip]['name'] . ' ' . $ipList[$ip]['ip']);
 
   $ipListHandler->update($ipList);
+  triggerNeighborNotifications();
+}
+
+function removeFromIpList($ip) {
+  global $ipListHandler;
+  $ipList = $ipListHandler->getList();
+
+  error_log('Wird aus der Registry entfernt: ' . $ipList[$ip]['name'] . ' ' . $ipList[$ip]['ip']);
+
+  unset($ipList[$ip]);
+  $ipList = array_values($ipList[$ip]);
+  $ipListHandler->update($ipList);
+  triggerNeighborNotifications();
 }
 
 function triggerNeighborNotifications() {
