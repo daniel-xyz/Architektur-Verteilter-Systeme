@@ -27,7 +27,7 @@
     <div class="links-container">
       <div class="links"><a href="registerServer.html">Diesen Server anmelden</a></div>
       <div class="links"><a href="registerOtherServer.html">Einen anderen Server anmelden</a></div>
-      <div class="links"><a href="registerOtherServer.html">Einen anderen Server rauswerfen</a></div>
+      <div class="links"><a href="kickOtherServer.html">Einen anderen Server rauswerfen</a></div>
     </div>
   </div>
 </body>
