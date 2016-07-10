@@ -59,10 +59,10 @@ function addToIpList($name, $ip) {
 }
 
 function triggerNeighborNotifications() {
-  error_log('Registry stößt die Neighbors-Notifications an: ' . $_SERVER['SERVER_ADDR']);
+  error_log('Registry stößt die Neighbors-Notifications an.');
 
   try {
-    $request = new HTTP_Request2('http://' . $_SERVER['SERVER_ADDR'] . '/Architektur-Verteilter-Systeme/a4/yourNeighbor.php');
+    $request = new HTTP_Request2('http://' . 'localhost' . '/Architektur-Verteilter-Systeme/a4/yourNeighbor.php');
     $request->setMethod(HTTP_Request2::METHOD_POST);
     $request->send();
   } catch (Exception $exc) {
