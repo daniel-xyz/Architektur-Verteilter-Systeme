@@ -16,3 +16,5 @@ try {
 } catch (Exception $exc) {
   error_log($exc->getMessage());
 }
+
+var_dump(http_response_code(200));
