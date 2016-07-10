@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script type="text/javascript" src="js/lib/jquery-2.2.3.min.js"></script>
+  <script type="text/javascript" src="js/statusMessageHandler.js"></script>
+  <script type="text/javascript" src="js/registryNotifier.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+  <title>Server registrieren</title>
+</head>
+<body>
+<div class="main-container">
+  <span class="status"></span>
+  <div class="input-container">
+    <p>
+      <label for="kickIP">Server kicken:</label>
+      <input id="kickIP" type="text" placeholder="IP eingeben">
+    </p>
+    <p>
+    <input type="button" value="Kicken" onclick="notifyRegistry()">
+  </div>
+  <div class="ip-list-container"></div>
+</div>
+</body>
+</html>
