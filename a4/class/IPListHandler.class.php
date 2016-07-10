@@ -33,12 +33,10 @@ class IPListHandler {
     $keys = array_keys($ipList);
 
     $indexOfMyIP = array_search($myIP, array_keys($ipList));
-    error_log("Index meiner IP: " . $indexOfMyIP); // TODO Server wusste sie nicht
 
     if ($indexOfMyIP < (count($ipList) - 1)) {
       $neighbor = $ipList[$keys[$indexOfMyIP + 1]];
       $next = $neighbor['ip'];
-      error_log("Mein nächster Nachbar: " . $neighbor['ip']);
     } else {
       $next = $ipList[$keys[0]]['ip'];
     }
@@ -47,15 +45,12 @@ class IPListHandler {
   }
 
   public function getMyNextNeighborsIPFromTemporaryList($ipList, $myIP) {
-    error_log("yourNeighbor.php: Berechne Array-Index meiner IP: " . $myIP);
     $keys = array_keys($ipList);
     $indexOfMyIP = array_search($myIP, array_keys($ipList));
-    error_log("yourNeighbor.php: Index meiner IP in der neuen IP-Liste: " . $indexOfMyIP);
 
     if ($indexOfMyIP < (count($ipList) - 1)) {
       $neighbor = $ipList[$keys[$indexOfMyIP + 1]];
       $next = $neighbor['ip'];
-      error_log("yourNeighbor.php: Mein nächster Nachbar: " . $neighbor['ip']);
     } else {
       $next = $ipList[$keys[0]]['ip'];
     }
