@@ -2,8 +2,10 @@
 
 require_once('HTTP/Request2.php');
 require_once('../class/IPListHandler.class.php');
+require_once('../class/ServerRestarter.class.php');
 
 $ipListHandler = new IPListHandler();
+$serverRestarter = new ServerRestarter();
 
 if (!empty($_REQUEST['name'])) {
   $name = $_REQUEST['name'];
@@ -63,14 +65,19 @@ function addToIpList($name, $ip) {
 }
 
 function removeFromIpList($ip) {
-  global $ipListHandler;
+  global $ipListHandler, $serverRestarter;
   $ipList = $ipListHandler->getList();
 
   error_log('Wird aus der Registry entfernt: ' . $ipList[$ip]['name'] . ' ' . $ipList[$ip]['ip']);
 
   unset($ipList[$ip]);
   $ipListHandler->update($ipList);
-  triggerNeighborNotifications();
+
+  if (count($ipListHandler->getList()) > 1) {
+    triggerNeighborNotifications();
+  } else {
+    $serverRestarter->restartAllServers();
+  }
 }
 
 function triggerNeighborNotifications() {
