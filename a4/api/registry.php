@@ -40,7 +40,7 @@ function sendInformationToNewServer($name, $ip) {
     if (200 == $response->getStatus()) {
       addToIpList($name, $ip);
     } else {
-      echo 'Unerwarteter HTTP-Status vom Registry-Server: ' . $response->getStatus() . '. ' . $response->getReasonPhrase() . ' ';
+      error_log('Unerwarteter HTTP-Status vom Registry-Server: ' . $response->getStatus() . '. ' . $response->getReasonPhrase() . ' ');
     }
   } catch (HTTP_Request2_Exception $e) {
     error_log($e->getMessage());
