@@ -22,7 +22,7 @@
     <div class="message-container"></div>
     <div class="input-container">
       <form>
-        Neue Nachricht: <input type="text" name="new-message"> <input type="submit" onclick="sendMessage()" value="Absenden">
+        Neue Nachricht: <input type="text" name="new-message"> <input type="button" onclick="sendMessage()" value="Absenden">
       </form>
     </div>
   </div>

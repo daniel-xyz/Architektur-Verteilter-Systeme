@@ -56,7 +56,7 @@ if ($loopActive) {
       'timestamp' => $_REQUEST['timestamp']
     );
 
-    if ($isSystemMessage || $sender !== $myIP) {
+    if ($isSystemMessage) {
       $logger = new Logger();
       $logger->log($entry);
     }
