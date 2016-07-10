@@ -72,13 +72,7 @@ function removeFromIpList($ip) {
 
   unset($ipList[$ip]);
   $ipListHandler->update($ipList);
-
-  if (count($ipListHandler->getList()) > 1) {
-    triggerNeighborNotifications();
-  } else {
-    error_log('Nur noch ein Server im Chat, daher Restart ...');
-    $serverRestarter->restartAllServers();
-  }
+  triggerNeighborNotifications();
 }
 
 function triggerNeighborNotifications() {

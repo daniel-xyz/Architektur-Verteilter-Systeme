@@ -45,7 +45,7 @@ if($loopActive) {
     }
   }
 } else {
-  error_log("yourNeighbor.php wurde fertig ausgeführt!");
+  error_log("Alle Server haben die neue IP-Liste erhalten!");
 
   try {
     $request = new HTTP_Request2('http://' . $myIP . '/Architektur-Verteilter-Systeme/a4/sendMessage.php');
