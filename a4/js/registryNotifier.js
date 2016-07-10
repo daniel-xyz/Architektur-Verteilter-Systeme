@@ -23,7 +23,7 @@ function notifyRegistry() {
     params = {
       kickip: kickIP
     };
-    kickServer(kickip);
+    kickServer(kickIP);
   }
 
   function registerServer() {
@@ -36,8 +36,8 @@ function notifyRegistry() {
       });
   }
 
-  function kickServer(kickip) {
-    $.get('http://' + kickip + '/Architektur-Verteilter-Systeme/a4/kickOut.php', params)
+  function kickServer(kickIP) {
+    $.get('http://' + kickIP + '/Architektur-Verteilter-Systeme/a4/kickOut.php', params)
       .success(function() {
         msg('Server wurde erfolgreich gekickt. Viel Spaß!');
       })
