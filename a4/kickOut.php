@@ -14,7 +14,7 @@ try {
     ->addPostParameter(array('kickip' => $myIP));
   $request->send();
   $IPListHandler->resetList();
-  var_dump(http_response_code(200));
+  http_response_code(200);
 } catch (Exception $exc) {
   error_log($exc->getMessage());
 }

@@ -6,7 +6,7 @@ $logger = new Logger();
 
 $entry = $logger->getLog();
 
-if (!empty($entry) && count($entry) == 4) {
+if (isset($entry) && count($entry) == 4) {
   $response['message']['time'] = date('d.m.Y \u\m G:i:s', $entry['timestamp']);
   $response['message']['sender'] = $entry['sender'];
   $response['message']['message'] = $entry['message'];

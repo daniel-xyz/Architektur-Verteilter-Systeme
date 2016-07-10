@@ -10,7 +10,7 @@ $initiator = "";
 $isInitiator = false;
 $loopActive = false;
 
-if (!empty($_REQUEST['initiator']) && !empty($_REQUEST['iplist'])) {
+if (isset($_REQUEST['initiator']) && isset($_REQUEST['iplist'])) {
   $initiator = $_REQUEST['initiator'];
   $ipList = $_REQUEST['iplist'];
 }
@@ -36,7 +36,6 @@ if($loopActive) {
   $nextIP = $ipListHandler->getMyNextNeighborsIPFromTemporaryList($ipList, $myIP);
 
   if ($nextIP !== $myIP) {
-
     try {
       $request = new HTTP_Request2('http://' . $nextIP . '/Architektur-Verteilter-Systeme/a4/yourNeighbor.php');
       $request->setMethod(HTTP_Request2::METHOD_POST)

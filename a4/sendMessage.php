@@ -15,12 +15,12 @@ $loopActive = false;
 $sender = 0;
 $displayedSender = $sender;
 
-if (!empty($_REQUEST['message']) && !empty($_REQUEST['timestamp'])) {
+if (isset($_REQUEST['message']) && isset($_REQUEST['timestamp'])) {
   $message = $_REQUEST['message'];
   $timestam = $_REQUEST['timestamp'];
 }
 
-if (!empty($_REQUEST['sender'])) {
+if (isset($_REQUEST['sender'])) {
   $isServerMessage = true;
   $sender = $_REQUEST['sender'];
 
@@ -36,7 +36,7 @@ if (!empty($_REQUEST['sender'])) {
   $sender = $myIP;
 }
 
-if (!empty($_REQUEST['system']) && $_REQUEST['system'] === 'true') {
+if (isset($_REQUEST['system']) && $_REQUEST['system'] === 'true') {
   $isSystemMessage = true;
   $displayedSender = "System";
 } else {

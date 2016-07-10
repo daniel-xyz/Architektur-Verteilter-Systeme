@@ -7,25 +7,25 @@ require_once('../class/ServerRestarter.class.php');
 $ipListHandler = new IPListHandler();
 $serverRestarter = new ServerRestarter();
 
-if (!empty($_REQUEST['name'])) {
+if (isset($_REQUEST['name'])) {
   $name = $_REQUEST['name'];
 }
 
-if (!empty($_REQUEST['kickip'])) {
+if (isset($_REQUEST['kickip'])) {
   removeFromIpList($_REQUEST['kickip']);
 }
 
-if(!empty($_REQUEST['newip'])) {
+if(isset($_REQUEST['newip'])) {
   $ip = $_REQUEST['newip'];
-} else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+} else if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
   $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-} elseif(!empty($_SERVER['REMOTE_ADDR'])) {
+} elseif(isset($_SERVER['REMOTE_ADDR'])) {
   $ip = $_SERVER['REMOTE_ADDR'];
 } else {
   user_error("IP konnte nicht ermittelt werden.");
 }
 
-if (!empty($name) && !empty($ip)) {
+if (isset($name) && isset($ip)) {
   sendInformationToNewServer($name, $ip);
 }
 
@@ -76,6 +76,7 @@ function removeFromIpList($ip) {
   if (count($ipListHandler->getList()) > 1) {
     triggerNeighborNotifications();
   } else {
+    error_log('Nur noch ein Server im Chat, daher Restart ...');
     $serverRestarter->restartAllServers();
   }
 }

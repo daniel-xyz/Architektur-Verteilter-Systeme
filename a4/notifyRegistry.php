@@ -4,15 +4,15 @@ require_once('HTTP/Request2.php');
 require_once('class/FileHandler.class.php');
 require_once('class/IPListHandler.class.php');
 
-if(!empty($_REQUEST['registryip'] && !empty($_REQUEST['name']))) {
+if(isset($_REQUEST['registryip']) && isset($_REQUEST['name'])) {
   notifyExternalRegistry($_REQUEST['registryip'], $_REQUEST['name']);
 }
 
-if(!empty($_REQUEST['newip'] && !empty($_REQUEST['name']))) {
+if(isset($_REQUEST['newip']) && isset($_REQUEST['name'])) {
   notifyInternalRegistry($_REQUEST['newip'], $_REQUEST['name']);
 }
 
-if(!empty($_REQUEST['yourip'] && !empty($_REQUEST['yourname']))) {
+if(isset($_REQUEST['yourip']) && isset($_REQUEST['yourname'])) {
   error_log('Antwort der Registry: ' . $_REQUEST['yourname'] . ' ' . $_REQUEST['yourip']);
   processRegistryAnswer($_REQUEST['yourip'], $_REQUEST['yourname']);
   var_dump(http_response_code(200));
