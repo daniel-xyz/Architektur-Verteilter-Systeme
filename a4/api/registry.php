@@ -65,11 +65,10 @@ function addToIpList($name, $ip) {
 function removeFromIpList($ip) {
   global $ipListHandler;
   $ipList = $ipListHandler->getList();
-  $index = array_search($ip, array_keys($ipList));
 
   error_log('Wird aus der Registry entfernt: ' . $ipList[$ip]['name'] . ' ' . $ipList[$ip]['ip']);
 
-  unset($ipList[$index]);
+  unset($ipList[$ip]);
   $ipListHandler->update($ipList);
   triggerNeighborNotifications();
 }
