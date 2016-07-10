@@ -9,9 +9,6 @@
   <title>Aufgabe 4</title>
 </head>
 <body>
-  <script>
-    registerInputListener();
-  </script>
   <div class="main-container">
     <div class="top-container">
       <span class="status"></span>
