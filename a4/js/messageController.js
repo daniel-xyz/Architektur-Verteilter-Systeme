@@ -2,14 +2,14 @@ var loadMessages,
     messageCounter = 0;
 
 function sendMessage() {
-  var message = $("input[name=new-message]").val();
+  var $message = $("input[name=new-message]");
   var timestamp = Math.floor(Date.now() / 1000);
 
 
   resetStatusMessages();
 
   $.get("sendMessage.php", {
-    message: message,
+    message: $message.val(),
     timestamp: timestamp
   })
     .success(function() {
@@ -18,6 +18,8 @@ function sendMessage() {
     .fail(function() {
       error('Nachricht konnte nicht gespeichert werden.');
     });
+
+  $message.val("");
 }
 
 function startShowingMessages() {

@@ -56,10 +56,8 @@ if ($loopActive) {
       'timestamp' => $_REQUEST['timestamp']
     );
 
-    if ($isSystemMessage) {
-      $logger = new Logger();
-      $logger->log($entry);
-    }
+    $logger = new Logger();
+    $logger->log($entry);
 
     try {
       $request = new HTTP_Request2('http://' . $nextIP . '/Architektur-Verteilter-Systeme/a4/sendMessage.php');
