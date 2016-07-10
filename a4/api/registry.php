@@ -70,7 +70,6 @@ function removeFromIpList($ip) {
   error_log('Wird aus der Registry entfernt: ' . $ipList[$ip]['name'] . ' ' . $ipList[$ip]['ip']);
 
   unset($ipList[$index]);
-  $ipList = array_values($ipList[$ip]);
   $ipListHandler->update($ipList);
   triggerNeighborNotifications();
 }
