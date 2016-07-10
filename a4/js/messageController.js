@@ -1,8 +1,9 @@
 var loadMessages,
-    messageCounter = 0,
-    $messageInput = $("input[name=new-message]");
+    messageCounter = 0;
 
 function sendMessage() {
+  var $messageInput = $("input[name=new-message]");
+
   resetStatusMessages();
 
   $.get("sendMessage.php", {
@@ -11,12 +12,12 @@ function sendMessage() {
   })
     .success(function() {
       msg('Nachricht wurde angelegt.');
-      $messageInput.val("");
     })
     .fail(function() {
       error('Nachricht konnte nicht gespeichert werden.');
-      $messageInput.val("");
     });
+
+  $messageInput.val("");
 }
 
 function startShowingMessages() {
