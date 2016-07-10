@@ -9,10 +9,14 @@
   <title>Aufgabe 4</title>
 </head>
 <body>
+  <script>
+    registerInputListener();
+  </script>
   <div class="main-container">
     <div class="top-container">
       <span class="status"></span>
-      <span class="links"><a href="registerServer.html">Diesen Server registrieren</a></span>
+      <span class="links"><a href="registerServer.html">Diesen Server anmelden</a></span>
+      <span class="links"><a href="registerOtherServer.html">Einen anderen Server anmelden</a></span>
     </div>
     <div class="button-container">
       <input type="button" onclick="startShowingMessages()" value="Nachrichten anzeigen"/>

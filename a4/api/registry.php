@@ -7,16 +7,20 @@ $ipListHandler = new IPListHandler();
 
 if (!empty($_REQUEST['name'])) {
   $name = $_REQUEST['name'];
+}
 
-  if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    sendInformationToNewServer($name, $ip);
+if(!empty($_REQUEST['newip'])) {
+  $ip = $_REQUEST['newip'];
+} else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+  $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
 } elseif(!empty($_SERVER['REMOTE_ADDR'])) {
-    $ip = $_SERVER['REMOTE_ADDR'];
-    sendInformationToNewServer($name, $ip);
-  } else {
-    user_error("IP konnte nicht ermittelt werden.");
-  }
+  $ip = $_SERVER['REMOTE_ADDR'];
+} else {
+  user_error("IP konnte nicht ermittelt werden.");
+}
+
+if (!empty($name) && !empty($ip)) {
+  sendInformationToNewServer($name, $ip);
 }
 
 function sendInformationToNewServer($name, $ip) {

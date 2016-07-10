@@ -1,16 +1,21 @@
 var loadMessages,
-    messageCounter = 0;
+    messageCounter = 0,
+    $messageInput = $("input[name=new-message]");
+
+function registerInputListener() {
+  $messageInput.onkeyup(function(event){
+    if(event.keyCode == 13){
+      sendMessage();
+    }
+  });
+}
 
 function sendMessage() {
-  var $message = $("input[name=new-message]");
-  var timestamp = Math.floor(Date.now() / 1000);
-
-
   resetStatusMessages();
 
   $.get("sendMessage.php", {
-    message: $message.val(),
-    timestamp: timestamp
+    message: $messageInput.val(),
+    timestamp: Math.floor(Date.now() / 1000)
   })
     .success(function() {
       msg('Nachricht wurde angelegt.');
@@ -19,7 +24,7 @@ function sendMessage() {
       error('Nachricht konnte nicht gespeichert werden.');
     });
 
-  $message.val("");
+  $messageInput.val("");
 }
 
 function startShowingMessages() {

@@ -1,13 +1,24 @@
 function notifyRegistry() {
   var serverName = $('#server-name').val();
-  var ip = $('#ip').val();
+  var registry = $('#ip').val() || "";
+  var newIP = $('#invited-ip').val() || "";
+  var params = {};
 
   resetStatusMessages();
 
-  $.get("notifyRegistry.php", {
-    name: serverName,
-    ip: ip
-  })
+  if (registry !== "") {
+    params = {
+      name: serverName,
+      registryip: registry
+    }
+  } else {
+    params = {
+      name: serverName,
+      newip: newIP
+    }
+  }
+
+  $.get("notifyRegistry.php", params)
     .success(function() {
       msg('Server wurde erfolgreich angemeldet. Viel Spaß!');
     })

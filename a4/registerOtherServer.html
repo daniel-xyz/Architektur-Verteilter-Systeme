@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script type="text/javascript" src="js/lib/jquery-2.2.3.min.js"></script>
+  <script type="text/javascript" src="js/statusMessageHandler.js"></script>
+  <script type="text/javascript" src="js/registryNotifier.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+  <title>Server registrieren</title>
+</head>
+<body>
+<div class="main-container">
+  <span class="status"></span>
+  <div class="input-container">
+    <p>
+      <label for="invited-ip">Server einladen:</label>
+      <input id="invited-ip" type="text" placeholder="IP eingeben">
+    </p>
+    <p>
+    <p>
+      <label for="server-name">Gewünschter Servername:</label>
+      <input id="server-name" type="text" placeholder="Namen eingeben">
+    </p>
+    <input type="button" value="An Registry senden" onclick="notifyRegistry()">
+  </div>
+  <div class="ip-list-container"></div>
+</div>
+</body>
+</html>
