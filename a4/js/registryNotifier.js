@@ -1,5 +1,5 @@
 function notifyRegistry() {
-  var serverName = $('#server-name').val();
+  var serverName = $('#server-name').val() || "";
   var registry = $('#ip').val() || "";
   var newIP = $('#invited-ip').val() || "";
   var kickIP = $('#kick-ip').val() || "";
@@ -7,12 +7,12 @@ function notifyRegistry() {
 
   resetStatusMessages();
 
-  if (registry !== "") {
+  if ((registry !== "") && (serverName !== "")) {
     params = {
       name: serverName,
       registryip: registry
     }
-  } else if (newIP !== "") {
+  } else if ((newIP !== "") && && (serverName !== "")) {
     params = {
       name: serverName,
       newip: newIP
