@@ -54,7 +54,7 @@ if($loopActive) {
   try {
     $request = new HTTP_Request2('http://' . $myIP . '/Architektur-Verteilter-Systeme/a4/sendMessage.php');
     $request->setMethod(HTTP_Request2::METHOD_POST)
-      ->addPostParameter(array('message' => 'Neuer Server wurde erfolgreich angemeldet!' , 'timestamp' => time(), 'system' => 'true'));
+      ->addPostParameter(array('message' => 'Die Anzahl der Teilnehmer hat sich verändert!' , 'timestamp' => time(), 'system' => 'true'));
     $request->send();
     error_log("yourNeighbor.php: $myIP versendet Systemnachricht.");
   } catch (Exception $exc) {
