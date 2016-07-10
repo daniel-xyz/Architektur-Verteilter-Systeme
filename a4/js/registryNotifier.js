@@ -11,23 +11,38 @@ function notifyRegistry() {
     params = {
       name: serverName,
       registryip: registry
-    }
+    };
+    registerServer();
   } else if ((newIP !== "") && (serverName !== "")) {
     params = {
       name: serverName,
       newip: newIP
-    }
+    };
+    registerServer();
   } else if (kickIP !== "") {
     params = {
       kickip: kickIP
-    }
+    };
+    kickServer(kickip);
   }
 
-  $.get("notifyRegistry.php", params)
-    .success(function() {
-      msg('Registry wurde erfolgreich aktualisiert. Viel Spaß!');
-    })
-    .fail(function() {
-      error('Es ist leider etwas schief gelaufen.');
-    });
+  function registerServer() {
+    $.get("notifyRegistry.php", params)
+      .success(function() {
+        msg('Registry wurde erfolgreich aktualisiert. Viel Spaß!');
+      })
+      .fail(function() {
+        error('Es ist leider etwas schief gelaufen.');
+      });
+  }
+
+  function kickServer(kickip) {
+    $.get('http://' + kickip + '/Architektur-Verteilter-Systeme/a4/kickOut.php', params)
+      .success(function() {
+        msg('Server wurde erfolgreich gekickt. Viel Spaß!');
+      })
+      .fail(function() {
+        error('Es ist leider etwas schief gelaufen.');
+      });
+  }
 }
