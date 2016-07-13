@@ -16,4 +16,4 @@ if ($_SERVER['REMOTE_ADDR'] == $_SERVER['SERVER_ADDR']) {
 }
 
 $logger->resetLog();
-$IPListHandler->resetList();
+// $IPListHandler->resetList();
