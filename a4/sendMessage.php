@@ -4,7 +4,6 @@ require_once('HTTP/Request2.php');
 require_once('class/Logger.class.php');
 require_once('class/IPListHandler.class.php');
 
-
 $fileHandler = new FileHandler();
 $ipListHandler = new IPListHandler();
 $myIP = $_SERVER['SERVER_ADDR'];
